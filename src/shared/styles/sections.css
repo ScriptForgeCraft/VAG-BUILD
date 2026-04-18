@@ -251,6 +251,10 @@
   margin-top: 2rem;
 }
 
+.calculator-spacer {
+  height: 1.5rem;
+}
+
 .calculator-range input {
   width: 100%;
   accent-color: var(--color-accent);
@@ -288,20 +292,67 @@
   letter-spacing: 0.14em;
 }
 
-.estimate-box__value {
-  margin: 0.45rem 0;
-  font-size: 2.25rem;
+.estimate-box__summary {
+  margin: 0.55rem 0 1.25rem;
+  color: var(--color-graphite);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.estimate-box__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.estimate-card {
+  padding: 1.15rem;
+  background: var(--color-white);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 0.95rem;
+  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+}
+
+.estimate-card__label,
+.estimate-card__note {
+  margin: 0;
+}
+
+.estimate-card__label {
+  color: var(--color-accent);
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.estimate-card__value {
+  margin: 0.55rem 0 0.35rem;
+  font-size: 1.6rem;
   font-weight: 900;
   letter-spacing: -0.04em;
 }
 
-.estimate-box__currency {
-  font-size: 1rem;
+.estimate-card__currency {
+  font-size: 0.88rem;
   font-weight: 700;
+}
+
+.estimate-card__note {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 .estimate-box__note {
   color: var(--color-muted);
+}
+
+.calculator-divider {
+  height: 1px;
+  margin: 2rem 0;
+  background: rgba(15, 23, 42, 0.08);
 }
 
 .calculator-actions {

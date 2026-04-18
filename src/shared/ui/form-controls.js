@@ -25,8 +25,10 @@ export function renderInputField({
   classes = "field-input",
   autocomplete = "",
   extraAttributes = "",
+  value = "",
 }) {
   const autocompleteAttribute = autocomplete ? `autocomplete="${escapeAttribute(autocomplete)}"` : "";
+  const valueAttribute = value === "" ? "" : `value="${escapeAttribute(value)}"`;
 
   return `
     <div class="field-group">
@@ -39,6 +41,7 @@ export function renderInputField({
         ${autocompleteAttribute}
         ${createI18nPlaceholderAttributes(placeholder)}
         placeholder="${escapeAttribute(placeholder.am)}"
+        ${valueAttribute}
         ${extraAttributes}
       />
     </div>
@@ -142,6 +145,47 @@ export function renderSelectField({ id, name, fieldName = name, label, options }
           .join("")}
       </select>
     </div>
+  `;
+}
+
+export function renderCheckboxCards({
+  field,
+  label,
+  options,
+  selectedValues = [],
+  layoutClass = "choice-grid",
+}) {
+  return `
+    <fieldset class="calculator-fieldset">
+      <legend class="field-label" data-field-label="${escapeAttribute(field)}">
+        <span ${createI18nTextAttributes(label)}>${escapeHtml(label.am)}</span>
+      </legend>
+      <div class="${escapeAttribute(layoutClass)}">
+        ${options
+          .map((option) => {
+            const isSelected = selectedValues.includes(option.value);
+
+            return `
+              <label
+                class="choice-button choice-button--checkbox${isSelected ? " is-selected" : ""}"
+                data-checkbox-card
+                data-field="${escapeAttribute(field)}"
+                data-value="${escapeAttribute(option.value)}"
+              >
+                <input
+                  class="choice-checkbox"
+                  type="checkbox"
+                  name="${escapeAttribute(field)}"
+                  value="${escapeAttribute(option.value)}"
+                  ${isSelected ? "checked" : ""}
+                />
+                <span ${createI18nTextAttributes(option.label)}>${escapeHtml(option.label.am)}</span>
+              </label>
+            `;
+          })
+          .join("")}
+      </div>
+    </fieldset>
   `;
 }
 

@@ -1,15 +1,46 @@
 import { createStore } from "../../../shared/state/create-store.js";
 import { initialCalculatorState } from "./constants.js";
 
+const NUMERIC_FIELDS = new Set([
+  "area",
+  "demolitionArea",
+  "electricalPoints",
+  "plumbingPoints",
+  "screedArea",
+  "tileArea",
+  "paintArea",
+  "laminateArea",
+  "plinthLength",
+  "floorNumber",
+]);
+
 /**
  * @typedef {Object} CalculatorForm
- * @property {string} objectType
+ * @property {string} locationCity
+ * @property {string} locationDistrict
+ * @property {string} propertyType
  * @property {number} area
- * @property {string} workType
- * @property {string} condition
+ * @property {string} conditionStage
+ * @property {string} estimateMode
+ * @property {string} pricingPackage
+ * @property {string} renovationLevel
+ * @property {string} wetZonesCount
+ * @property {string} engineeringScope
+ * @property {string} replanningNeeded
+ * @property {string} demolitionScope
+ * @property {string[]} workModules
+ * @property {number} demolitionArea
+ * @property {number} electricalPoints
+ * @property {number} plumbingPoints
+ * @property {number} screedArea
+ * @property {number} tileArea
+ * @property {number} paintArea
+ * @property {number} laminateArea
+ * @property {number} plinthLength
+ * @property {number} floorNumber
+ * @property {string} elevator
+ * @property {string} accessLevel
  * @property {string} urgency
- * @property {string} demolition
- * @property {string} materials
  * @property {string} name
  * @property {string} phone
  * @property {string} comment
@@ -29,7 +60,7 @@ export function updateCalculatorField(field, value) {
     ...state,
     form: {
       ...state.form,
-      [field]: field === "area" ? Number(value) : value,
+      [field]: Array.isArray(value) ? value : NUMERIC_FIELDS.has(field) ? Number(value) : value,
     },
   }));
 }

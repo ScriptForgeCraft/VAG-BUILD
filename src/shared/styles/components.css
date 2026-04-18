@@ -443,6 +443,13 @@
   letter-spacing: 0.08em;
 }
 
+.choice-button--checkbox {
+  position: relative;
+  min-height: 4rem;
+  justify-content: flex-start;
+  text-align: left;
+}
+
 .choice-button--wide {
   justify-content: space-between;
   width: 100%;
@@ -459,6 +466,13 @@
   color: var(--color-accent);
   border-color: rgba(242, 125, 38, 0.55);
   background: rgba(242, 125, 38, 0.07);
+}
+
+.choice-checkbox {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .field-select,
@@ -499,6 +513,13 @@
 .segment-button.is-selected {
   background: var(--color-white);
   box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08);
+}
+
+.calculator-hint {
+  margin: 0 0 1rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
 }
 
 .site-footer {
