@@ -1,0 +1,124 @@
+@media (max-width: 1100px) {
+  .services__grid,
+  .portfolio__grid,
+  .process__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero__grid,
+  .why-us__grid,
+  .contacts-card,
+  .calculator-card {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-card__aside,
+  .calculator-card__body,
+  .contacts-card__info,
+  .contacts-card__form-wrap {
+    padding: 2.5rem;
+  }
+
+  .hero__badge,
+  .why-us__badge {
+    position: static;
+    margin-top: 1.25rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-nav,
+  .site-header__actions {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: inline-flex;
+  }
+
+  .trust-strip__grid,
+  .contacts-card__grid,
+  .testimonials__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .choice-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .container {
+    width: min(var(--container-width), calc(100% - 1.25rem));
+  }
+
+  .hero {
+    padding-top: calc(var(--header-height) + 3rem);
+  }
+
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .hero__stats,
+  .trust-strip__grid,
+  .services__grid,
+  .portfolio__grid,
+  .process__grid,
+  .testimonials__grid,
+  .contacts-card__grid,
+  .choice-grid,
+  .calculator-grid,
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero__actions,
+  .portfolio__header,
+  .calculator-actions,
+  .site-footer__bottom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero__actions .button,
+  .portfolio__header .button,
+  .calculator-actions .button,
+  .calculator-actions .text-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .calculator-card__aside,
+  .calculator-card__body,
+  .contacts-card__info,
+  .contacts-card__form-wrap,
+  .quick-form {
+    padding: 1.6rem;
+  }
+
+  .segmented-control {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-actions {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .floating-actions a {
+    width: 3.1rem;
+    height: 3.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
