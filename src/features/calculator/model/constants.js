@@ -1,78 +1,78 @@
 export const calculatorText = {
   title: {
-    am: "Հաշվիչ",
+    am: "Վերանորոգման հաշվիչ",
     ru: "Калькулятор ремонта",
     en: "Renovation Calculator",
   },
   description: {
-    am: "Ստացեք 3 սցենարով նախնական արժեքը` հիմնված Երևանի և Հայաստանի շուկայի վրա",
-    ru: "Получите предварительную смету в 3 сценариях на базе ориентиров по Еревану и Армении",
-    en: "Get a three-scenario estimate based on Yerevan and Armenia pricing benchmarks",
+    am: "Ստացեք նախնական հաշվարկ 3 սցենարով՝ հիմնված Երևանի և Հայաստանի շուկայական գների վրա։",
+    ru: "Получите предварительную смету в 3 сценариях на основе рыночных цен Еревана и Армении.",
+    en: "Get a three-scenario estimate based on Yerevan and Armenia pricing benchmarks.",
   },
   estimateLabel: {
-    am: "Նախնական արժեքային միջակայք",
+    am: "Նախնական գնային միջակայք",
     ru: "Предварительный диапазон стоимости",
     en: "Preliminary Budget Range",
   },
   estimateNote: {
-    am: "Միջակայքը կառուցված է շուկայական նվազագույն, տիպային և բարձր սցենարների վրա։ Վերջնական գինը կհստակեցվի չափագրումից և աշխատանքների ճշգրտումից հետո։",
-    ru: "Диапазон построен на рыночных сценариях min / typical / max. Финальная сумма уточняется после замера и фиксации состава работ.",
-    en: "The range is based on market min / typical / max scenarios. The final amount is confirmed after measurement and scope review.",
+    am: "Միջակայքը հիմնված է շուկայական նվազագույն, միջին և մաքսիմալ սցենարների վրա։ Վերջնական արժեքը կհստակեցվի չափագրումից և աշխատանքների ծավալի հաստատումից հետո։",
+    ru: "Диапазон построен на рыночных сценариях (минимум, стандарт, максимум). Финальная сумма утверждается после замера и фиксации объема работ.",
+    en: "The range is based on market min, typical, and max scenarios. The final amount is confirmed after measurement and scope review.",
   },
   estimateSummary: {
-    am: "Երեք սցենարները օգնում են տեսնել նվազագույն, իրատեսական և ավելի բարդ տարբերակը",
-    ru: "Три сценария помогают увидеть минимальный, реалистичный и более сложный бюджет",
-    en: "Three scenarios show the minimum, realistic, and high-complexity budget",
+    am: "Երեք սցենարները ցույց են տալիս նվազագույն, իրատեսական և ավելի բարդ/պրեմիում տարբերակների բյուջեն։",
+    ru: "Три сценария показывают минимальный, реалистичный и более сложный/премиальный бюджет.",
+    en: "Three scenarios show the minimum, realistic, and high-complexity budget.",
   },
   selectedWorksHint: {
-    am: "Ընտրեք միայն այն աշխատանքները, որոնք պետք է հաշվել։ Սմետան կհաշվվի միայն ընտրված դիրքերով, առանց հարկի, լոգիստիկայի և այլ project-level հավելավճարների։",
-    ru: "Отметьте только те работы, которые нужно посчитать. Смета считается только по выбранным позициям, без этажных, логистических и других project-level надбавок.",
-    en: "Select only the works you want to estimate. The estimate is based only on the chosen items, without floor, logistics, or other project-level uplifts.",
+    am: "Նշեք միայն այն աշխատանքները, որոնք անհրաժեշտ է հաշվարկել։ Նախահաշիվը ներառում է միայն ընտրված դիրքերը՝ առանց լոգիստիկայի, հարկերի և ընդհանուր նախագծային հավելավճարների։",
+    ru: "Отметьте только те работы, которые нужно посчитать. Смета формируется только по выбранным позициям, без учета логистики, подъема на этаж и других общепроектных расходов.",
+    en: "Select only the works you want to estimate. The estimate is based strictly on the chosen items, without logistics, floor access, or other project-level overhead.",
   },
   selectedWorksCoverageHint: {
-    am: "Եթե դիրքի համար առանձին դաշտ չկա, այն ավտոմատ չի մտնում հաշվարկի մեջ։ Օրինակ` կահույք, տեխնիկա, հեռուստացույց, դեկոր և այլ առանձին համաձայնեցվող իրեր։",
-    ru: "Если для позиции нет отдельного поля, она не попадает в автоподсчёт. Например: мебель, техника, телевизоры, декор и другие отдельно согласуемые позиции.",
-    en: "If an item has no separate field, it is not included in the automatic estimate. For example: furniture, appliances, TVs, decor, and other separately agreed items.",
+    am: "Եթե դիրքի համար առանձին դաշտ նախատեսված չէ, այն ավտոմատ չի ներառվում հաշվարկի մեջ։ Օրինակ՝ կահույք, տեխնիկա, հեռուստացույց, դեկոր և առանձին համաձայնեցվող այլ իրեր։",
+    ru: "Если для позиции нет отдельного поля, она не входит в автоматический расчет. Например: мебель, бытовая техника, телевизоры, декор и прочие элементы, приобретаемые отдельно.",
+    en: "If an item has no dedicated field, it is not included in the automatic estimate. Examples: furniture, appliances, TVs, decor, and other items purchased separately.",
   },
   pricingPackageHint: {
-    am: "«Բոլոր նյութերը» նշանակում է շինարարական և հարդարման նյութեր վերանորոգման նախահաշվում։ Կահույք, կենցաղային տեխնիկա, հեռուստացույց, տեքստիլ և դեկոր այստեղ չեն մտնում, եթե առանձին նշված չեն։",
-    ru: "Пакет «все материалы» означает строительные и отделочные материалы в рамках ремонтной сметы. Мебель, техника, телевизоры, текстиль и декор сюда не входят, если не добавлены отдельно.",
-    en: "The “all materials” package means construction and finish materials within the renovation budget. Furniture, appliances, TVs, textiles, and decor are not included unless listed separately.",
+    am: "«Բոլոր նյութերը» ներառում է շինարարական (սև) և հարդարման նյութերը վերանորոգման նախահաշվի շրջանակներում։ Կահույքը, կենցաղային տեխնիկան և դեկորն այստեղ չեն մտնում։",
+    ru: "Пакет «все материалы» включает черновые и чистовые строительные материалы в рамках сметы. Мебель, техника, текстиль и декор в этот пакет не входят.",
+    en: "The “all materials” package includes rough and finish construction materials within the budget. Furniture, appliances, textiles, and decor are not included.",
   },
   turnkeyHint: {
-    am: "Այս հաշվիչում «բանալիով» նշանակում է ամբողջական վերանորոգման ցիկլ մինչև պատրաստ բնակվելու կամ հանձնելու վիճակ, բայց առանց առանձին համաձայնեցվող կահույքի, տեխնիկայի և դեկորի։",
-    ru: "В этом калькуляторе «под ключ» означает полный цикл ремонта до состояния готовности к заселению или сдаче, но без отдельно согласуемых позиций: мебели, техники и декора.",
-    en: "In this calculator, “turnkey” means a full renovation cycle to move-in or handover readiness, but without separately approved items such as furniture, appliances, or decor.",
+    am: "Այս հաշվիչում «բանալիով» (turnkey) տարբերակը նշանակում է վերանորոգման ամբողջական ցիկլ՝ մինչև բնակվելու պատրաստ վիճակ, բայց առանց կահույքի և տեխնիկայի։",
+    ru: "В данном калькуляторе ремонт «под ключ» означает полный цикл отделки до состояния готовности к проживанию, но без мебели и бытовой техники.",
+    en: "In this calculator, “turnkey” implies a complete renovation cycle up to move-in readiness, but excludes furniture and appliances.",
   },
   contactHint: {
-    am: "Թողեք հեռախոսահամարը, և կուղարկենք ավելի ճշգրիտ հաշվարկ ու աշխատանքների կազմը։",
-    ru: "Оставьте номер телефона, и мы подготовим более точный расчет и состав работ.",
-    en: "Leave your phone number and we will prepare a more accurate quote and scope.",
+    am: "Թողեք Ձեր հեռախոսահամարը, և մենք կուղարկենք ավելի ճշգրիտ հաշվարկ և աշխատանքների մանրամասն ցանկ։",
+    ru: "Оставьте ваш номер телефона, и мы подготовим более точный расчет и подробный перечень работ.",
+    en: "Leave your phone number, and we will prepare a more accurate estimate and detailed scope of work.",
   },
   breakdownLabel: {
-    am: "Տիպային breakdown",
-    ru: "Типовой breakdown",
-    en: "Typical Breakdown",
+    am: "Ծախսերի բաշխում",
+    ru: "Детализация расходов",
+    en: "Cost Breakdown",
   },
   breakdownSelectedWorksHint: {
-    am: "Ընտրված աշխատանքների breakdown-ը ցուցադրում է միայն առանձին դիրքերը և դրանց subtotal-ները։",
-    ru: "Breakdown для selected works показывает только отдельные позиции и их subtotal-ы.",
-    en: "The selected-works breakdown shows only the chosen line items and their subtotals.",
+    am: "Ընտրված աշխատանքների բաշխումը ցույց է տալիս միայն առանձին դիրքերը և դրանց միջանկյալ գումարները։",
+    ru: "Детализация выбранных работ показывает только отдельные позиции и их промежуточные итоги.",
+    en: "The selected works breakdown shows only the chosen line items and their subtotals.",
   },
   breakdownFullRenovationHint: {
-    am: "Full-renovation breakdown-ը ցույց է տալիս բազային sqm-package-ը և թույլատրելի project-level ճշգրտումները։",
-    ru: "Breakdown full-renovation показывает базовый sqm-package и допустимые project-level корректировки.",
-    en: "The full-renovation breakdown shows the base sqm package and allowed project-level adjustments.",
+    am: "Ամբողջական վերանորոգման հաշվարկը ցույց է տալիս քառակուսի մետրի բազային արժեքը և նախագծային թույլատրելի ճշգրտումները։",
+    ru: "Детализация полного ремонта показывает базовую стоимость за кв.м. и возможные корректировки на уровне проекта.",
+    en: "The full renovation breakdown shows the base cost per sqm and allowed project-level adjustments.",
   },
   breakdownEmpty: {
-    am: "Ավելացրեք աշխատանք կամ փոխեք սցենարը, որպեսզի breakdown-ը երևա։",
-    ru: "Добавьте работу или измените сценарий, чтобы увидеть breakdown.",
-    en: "Add a work item or change the scenario to see the breakdown.",
+    am: "Ավելացրեք աշխատանք կամ փոխեք սցենարը, որպեսզի տեսնեք ծախսերի բաշխումը։",
+    ru: "Добавьте вид работ или измените сценарий, чтобы увидеть детализацию.",
+    en: "Add a work item or change the scenario to view the breakdown.",
   },
   breakdownProjectAdjustments: {
-    am: "Project-level ճշգրտումներ",
-    ru: "Project-level корректировки",
-    en: "Project-Level Adjustments",
+    am: "Նախագծային ճշգրտումներ",
+    ru: "Проектные корректировки",
+    en: "Project Adjustments",
   },
   breakdownLabor: {
     am: "Աշխատանք",
@@ -85,19 +85,19 @@ export const calculatorText = {
     en: "Materials",
   },
   breakdownPackage: {
-    am: "Փաթեթ / ֆիքսված գին",
-    ru: "Пакет / фикс",
-    en: "Package / Fixed",
+    am: "Փաթեթ / Ֆիքսված գին",
+    ru: "Пакет / Фиксированная цена",
+    en: "Package / Fixed Price",
   },
   breakdownMinimumOrder: {
-    am: "Minimum order",
+    am: "Նվազագույն պատվեր",
     ru: "Минимальный заказ",
     en: "Minimum Order",
   },
   breakdownFinal: {
-    am: "Կլորացված արդյունք",
-    ru: "Округлённый итог",
-    en: "Rounded Total",
+    am: "Վերջնական գումար",
+    ru: "Итоговая сумма",
+    en: "Final Total",
   },
   breakdownQuantity: {
     am: "Քանակ",
@@ -110,7 +110,7 @@ export const calculatorText = {
     en: "Back",
   },
   nextButton: {
-    am: "Հաջորդ քայլը",
+    am: "Հաջորդ քայլ",
     ru: "Следующий шаг",
     en: "Next Step",
   },
@@ -131,8 +131,8 @@ export const calculatorScenarioMeta = [
       en: "Minimal",
     },
     note: {
-      am: "Սեղմ բյուջե և պարզ սցենար",
-      ru: "Сдержанный бюджет и простой сценарий",
+      am: "Խնայողական բյուջե և պարզ լուծումներ",
+      ru: "Экономный бюджет и простые решения",
       en: "Lean budget and simpler scope",
     },
   },
@@ -145,8 +145,8 @@ export const calculatorScenarioMeta = [
       en: "Realistic",
     },
     note: {
-      am: "Ամենահավանական միջին սցենար",
-      ru: "Наиболее вероятный средний сценарий",
+      am: "Ամենահավանական միջին վիճակագրական տարբերակը",
+      ru: "Наиболее вероятный среднестатистический вариант",
       en: "Most likely mid-range scenario",
     },
   },
@@ -159,9 +159,9 @@ export const calculatorScenarioMeta = [
       en: "High",
     },
     note: {
-      am: "Բարդություն, ավելի բարձր ծախսեր կամ բարձրակարգ նյութեր",
-      ru: "Более сложный объект, повышенные риски или дорогие материалы",
-      en: "Higher complexity, risk, or material grade",
+      am: "Բարդ դիզայն, բարձրակարգ նյութեր կամ հավելյալ ռիսկեր",
+      ru: "Сложный дизайн, премиальные материалы или скрытые риски",
+      en: "Higher complexity, risks, or premium materials",
     },
   },
 ];
@@ -195,7 +195,7 @@ export const calculatorProgressSteps = [
     step: 4,
     label: {
       am: "Արժեք և կապ",
-      ru: "Смета и связь",
+      ru: "Смета и контакты",
       en: "Estimate & Contact",
     },
   },
@@ -207,8 +207,8 @@ export const calculatorFields = {
     impact: 5,
     dependency: "always",
     label: {
-      am: "Քաղաք / մարզ",
-      ru: "Город / регион",
+      am: "Քաղաք / Մարզ",
+      ru: "Город / Регион",
       en: "City / Region",
     },
     options: [
@@ -255,8 +255,8 @@ export const calculatorFields = {
       {
         value: "other",
         label: {
-          am: "Այլ քաղաք / մարզ",
-          ru: "Другой город / регион",
+          am: "Այլ քաղաք / Մարզ",
+          ru: "Другой город / Регион",
           en: "Other Region",
         },
       },
@@ -392,15 +392,15 @@ export const calculatorFields = {
         value: "house",
         label: {
           am: "Առանձնատուն",
-          ru: "Дом",
+          ru: "Частный дом",
           en: "House",
         },
       },
       {
         value: "commercial",
         label: {
-          am: "Կոմերցիոն",
-          ru: "Коммерческий",
+          am: "Կոմերցիոն տարածք",
+          ru: "Коммерческое помещение",
           en: "Commercial",
         },
       },
@@ -411,7 +411,7 @@ export const calculatorFields = {
     impact: 5,
     dependency: "always",
     label: {
-      am: "Ընդհանուր մակերեսը (քմ)",
+      am: "Ընդհանուր մակերես (քմ)",
       ru: "Общая площадь (м²)",
       en: "Total Area (sqm)",
     },
@@ -430,22 +430,22 @@ export const calculatorFields = {
         value: "new-shell",
         label: {
           am: "Նորակառույց, սևագիր",
-          ru: "Новостройка, черновая",
+          ru: "Новостройка, черновая отделка",
           en: "New Building, Shell",
         },
       },
       {
         value: "new-white-box",
         label: {
-          am: "Նորակառույց, նախապատրաստված",
-          ru: "Новостройка, white box",
+          am: "Նորակառույց, սպիտակ կմախք (white box)",
+          ru: "Новостройка, предчистовая (white box)",
           en: "New Building, White Box",
         },
       },
       {
         value: "secondary-empty",
         label: {
-          am: "Երկրորդային, դատարկ",
+          am: "Երկրորդային շուկա, դատարկ",
           ru: "Вторичка, пустая",
           en: "Secondary, Empty",
         },
@@ -453,15 +453,15 @@ export const calculatorFields = {
       {
         value: "secondary-lived-in",
         label: {
-          am: "Երկրորդային, բնակեցված",
-          ru: "Вторичка, с проживанием",
+          am: "Երկրորդային շուկա, բնակեցված",
+          ru: "Вторичка, жилая",
           en: "Secondary, Occupied",
         },
       },
       {
         value: "after-demolition",
         label: {
-          am: "Դեմոնտաժից հետո",
+          am: "Ապամոնտաժումից հետո",
           ru: "После демонтажа",
           en: "After Demolition",
         },
@@ -473,16 +473,16 @@ export const calculatorFields = {
     impact: 5,
     dependency: "always",
     label: {
-      am: "Ինչպե՞ս հաշվենք",
-      ru: "Что считаем",
-      en: "What Should We Estimate",
+      am: "Ի՞նչ ենք հաշվարկում",
+      ru: "Что рассчитываем?",
+      en: "What Should We Estimate?",
     },
     options: [
       {
         value: "full-renovation",
         label: {
           am: "Ամբողջական վերանորոգում",
-          ru: "Полный ремонт",
+          ru: "Комплексный ремонт",
           en: "Full Renovation",
         },
       },
@@ -502,8 +502,8 @@ export const calculatorFields = {
     dependency: "always",
     label: {
       am: "Ի՞նչ ներառել արժեքի մեջ",
-      ru: "Что включить в стоимость",
-      en: "What Should Be Included",
+      ru: "Что включить в стоимость?",
+      en: "What Should Be Included?",
     },
     options: [
       {
@@ -517,7 +517,7 @@ export const calculatorFields = {
       {
         value: "labor-plus-rough",
         label: {
-          am: "Աշխատանք + սև նյութեր",
+          am: "Աշխատանք + սևագիր նյութեր",
           ru: "Работы + черновые материалы",
           en: "Labor + Rough Materials",
         },
@@ -525,9 +525,9 @@ export const calculatorFields = {
       {
         value: "labor-plus-all",
         label: {
-          am: "Աշխատանք + շինարարական և հարդարման նյութեր",
-          ru: "Работы + строительные и отделочные материалы",
-          en: "Labor + Construction and Finish Materials",
+          am: "Աշխատանք + բոլոր նյութերը",
+          ru: "Работы + все стройматериалы",
+          en: "Labor + Construction & Finish Materials",
         },
       },
     ],
@@ -537,7 +537,7 @@ export const calculatorFields = {
     impact: 5,
     dependency: "estimateMode = full-renovation",
     label: {
-      am: "Վերանորոգման մակարդակը",
+      am: "Վերանորոգման տեսակը",
       ru: "Уровень ремонта",
       en: "Renovation Level",
     },
@@ -561,8 +561,8 @@ export const calculatorFields = {
       {
         value: "premium-turnkey",
         label: {
-          am: "Պրեմիում / բանալիով",
-          ru: "Премиум / под ключ",
+          am: "Պրեմիում / Բանալիով",
+          ru: "Премиум / Под ключ",
           en: "Premium / Turnkey",
         },
       },
@@ -573,7 +573,7 @@ export const calculatorFields = {
     impact: 4,
     dependency: "full-renovation + residential",
     label: {
-      am: "Սանհանգույց / խոնավ գոտիներ",
+      am: "Սանհանգույցներ / խոնավ գոտիներ",
       ru: "Санузлы / мокрые зоны",
       en: "Wet Zones",
     },
@@ -617,8 +617,8 @@ export const calculatorFields = {
       {
         value: "keep-existing",
         label: {
-          am: "Պահպանել գործողը",
-          ru: "Оставить текущее",
+          am: "Պահպանել եղածը",
+          ru: "Оставить существующие",
           en: "Keep Existing",
         },
       },
@@ -633,7 +633,7 @@ export const calculatorFields = {
       {
         value: "full-replace",
         label: {
-          am: "Լիարժեք փոխարինում",
+          am: "Ամբողջական փոխարինում",
           ru: "Полная замена",
           en: "Full Replace",
         },
@@ -645,8 +645,8 @@ export const calculatorFields = {
     impact: 4,
     dependency: "full-renovation and non-cosmetic",
     label: {
-      am: "Պե՞տք է վերապլանավորում",
-      ru: "Нужна перепланировка",
+      am: "Անհրաժե՞շտ է վերապլանավորում",
+      ru: "Нужна ли перепланировка?",
       en: "Replanning Needed",
     },
     options: [
@@ -673,7 +673,7 @@ export const calculatorFields = {
     impact: 4,
     dependency: "secondary object or replanning",
     label: {
-      am: "Դեմոնտաժի ծավալը",
+      am: "Ապամոնտաժման (դեմոնտաժի) ծավալը",
       ru: "Объем демонтажа",
       en: "Demolition Scope",
     },
@@ -689,8 +689,8 @@ export const calculatorFields = {
       {
         value: "light-finish",
         label: {
-          am: "Թեթև հարդարանք",
-          ru: "Легкий",
+          am: "Թեթև (միայն հարդարանք)",
+          ru: "Легкий (только отделка)",
           en: "Light Finish",
         },
       },
@@ -705,8 +705,8 @@ export const calculatorFields = {
       {
         value: "heavy-with-walls",
         label: {
-          am: "Ծանր, նաև պատեր",
-          ru: "Тяжелый, со стенами",
+          am: "Ծանր (ներառյալ պատերը)",
+          ru: "Тяжелый (включая стены)",
           en: "Heavy With Walls",
         },
       },
@@ -717,15 +717,15 @@ export const calculatorFields = {
     impact: 5,
     dependency: "estimateMode = selected-works",
     label: {
-      am: "Ընտրեք աշխատանքները",
-      ru: "Выберите работы",
+      am: "Ընտրեք անհրաժեշտ աշխատանքները",
+      ru: "Выберите виды работ",
       en: "Choose the Works",
     },
     options: [
       {
         value: "demolition",
         label: {
-          am: "Դեմոնտաժ",
+          am: "Ապամոնտաժում (դեմոնտաժ)",
           ru: "Демонтаж",
           en: "Demolition",
         },
@@ -734,7 +734,7 @@ export const calculatorFields = {
         value: "electrical",
         label: {
           am: "Էլեկտրամոնտաժ",
-          ru: "Электрика",
+          ru: "Электромонтаж",
           en: "Electrical",
         },
       },
@@ -749,7 +749,7 @@ export const calculatorFields = {
       {
         value: "screed",
         label: {
-          am: "Ստյաժկա",
+          am: "Հատակի հարթեցում (ստյաժկա)",
           ru: "Стяжка пола",
           en: "Floor Screed",
         },
@@ -758,23 +758,23 @@ export const calculatorFields = {
         value: "tile",
         label: {
           am: "Սալիկապատում",
-          ru: "Плитка",
+          ru: "Укладка плитки",
           en: "Tile",
         },
       },
       {
         value: "wall-paint",
         label: {
-          am: "Պատերի ներկում",
-          ru: "Подготовка и покраска",
+          am: "Պատերի նախապատրաստում և ներկում",
+          ru: "Подготовка и покраска стен",
           en: "Wall Paint",
         },
       },
       {
         value: "laminate-floor",
         label: {
-          am: "Լամինատ",
-          ru: "Ламинат",
+          am: "Լամինատի տեղադրում",
+          ru: "Укладка ламината",
           en: "Laminate Floor",
         },
       },
@@ -785,13 +785,13 @@ export const calculatorFields = {
     impact: 4,
     dependency: "workModules includes demolition",
     label: {
-      am: "Դեմոնտաժի մակերեսը (քմ)",
+      am: "Ապամոնտաժվող մակերեսը (քմ)",
       ru: "Площадь демонтажа (м²)",
       en: "Demolition Area (sqm)",
     },
     placeholder: {
-      am: "Օր.` 25",
-      ru: "Напр. 25",
+      am: "Օր.՝ 25",
+      ru: "Напр.: 25",
       en: "e.g. 25",
     },
   },
@@ -800,13 +800,13 @@ export const calculatorFields = {
     impact: 5,
     dependency: "workModules includes electrical",
     label: {
-      am: "Էլեկտրական կետեր (հատ)",
-      ru: "Электроточки (шт.)",
+      am: "Էլեկտրական կետերի քանակը (հատ)",
+      ru: "Количество электроточек (шт.)",
       en: "Electrical Points",
     },
     placeholder: {
-      am: "Օր.` 25",
-      ru: "Напр. 25",
+      am: "Օր.՝ 25",
+      ru: "Напр.: 25",
       en: "e.g. 25",
     },
   },
@@ -815,13 +815,13 @@ export const calculatorFields = {
     impact: 4,
     dependency: "workModules includes plumbing",
     label: {
-      am: "Փոքր սանտեխնիկական աշխատանքներ / այցեր (հատ)",
+      am: "Փոքր սանտեխնիկական կետեր / այցեր (հատ)",
       ru: "Мелкие сантехнические задачи / выезды (шт.)",
       en: "Minor Plumbing Jobs / Visits",
     },
     placeholder: {
-      am: "Օր.` 1",
-      ru: "Напр. 1",
+      am: "Օր.՝ 1",
+      ru: "Напр.: 1",
       en: "e.g. 1",
     },
   },
@@ -835,8 +835,8 @@ export const calculatorFields = {
       en: "Additional Plumber Hours",
     },
     placeholder: {
-      am: "Օր.` 2",
-      ru: "Напр. 2",
+      am: "Օր.՝ 2",
+      ru: "Напр.: 2",
       en: "e.g. 2",
     },
   },
@@ -845,13 +845,13 @@ export const calculatorFields = {
     impact: 4,
     dependency: "workModules includes screed",
     label: {
-      am: "Ստյաժկայի մակերեսը (քմ)",
+      am: "Հարթեցվող (ստյաժկայի) մակերեսը (քմ)",
       ru: "Площадь стяжки (м²)",
       en: "Screed Area (sqm)",
     },
     placeholder: {
-      am: "Օր.` 60",
-      ru: "Напр. 60",
+      am: "Օր.՝ 60",
+      ru: "Напр.: 60",
       en: "e.g. 60",
     },
   },
@@ -860,13 +860,13 @@ export const calculatorFields = {
     impact: 4,
     dependency: "workModules includes tile",
     label: {
-      am: "Սալիկի մակերեսը (քմ)",
+      am: "Սալիկապատվող մակերեսը (քմ)",
       ru: "Площадь плитки (м²)",
       en: "Tile Area (sqm)",
     },
     placeholder: {
-      am: "Օր.` 18",
-      ru: "Напр. 18",
+      am: "Օր.՝ 18",
+      ru: "Напр.: 18",
       en: "e.g. 18",
     },
   },
@@ -875,13 +875,13 @@ export const calculatorFields = {
     impact: 3,
     dependency: "workModules includes wall-paint",
     label: {
-      am: "Ներկման մակերեսը (քմ)",
+      am: "Ներկվող մակերեսը (քմ)",
       ru: "Площадь покраски (м²)",
       en: "Paint Area (sqm)",
     },
     placeholder: {
-      am: "Օր.` 140",
-      ru: "Напр. 140",
+      am: "Օր.՝ 140",
+      ru: "Напр.: 140",
       en: "e.g. 140",
     },
   },
@@ -895,8 +895,8 @@ export const calculatorFields = {
       en: "Laminate Area (sqm)",
     },
     placeholder: {
-      am: "Օր.` 45",
-      ru: "Напр. 45",
+      am: "Օր.՝ 45",
+      ru: "Напр.: 45",
       en: "e.g. 45",
     },
   },
@@ -905,13 +905,13 @@ export const calculatorFields = {
     impact: 2,
     dependency: "workModules includes laminate-floor",
     label: {
-      am: "Պլինտուսի երկարությունը (գծ.մ.)",
+      am: "Շրիշակների (պլինտուսի) երկարությունը (գծ.մ.)",
       ru: "Длина плинтуса (п.м.)",
       en: "Plinth Length (lm)",
     },
     placeholder: {
-      am: "Օր.` 32",
-      ru: "Напр. 32",
+      am: "Օր.՝ 32",
+      ru: "Напр.: 32",
       en: "e.g. 32",
     },
   },
@@ -925,8 +925,8 @@ export const calculatorFields = {
       en: "Floor",
     },
     placeholder: {
-      am: "Օր.` 7",
-      ru: "Напр. 7",
+      am: "Օր.՝ 7",
+      ru: "Напр.: 7",
       en: "e.g. 7",
     },
   },
@@ -935,9 +935,9 @@ export const calculatorFields = {
     impact: 3,
     dependency: "apartment and floor > 1",
     label: {
-      am: "Կա՞ վերելակ",
-      ru: "Есть ли лифт",
-      en: "Elevator Available",
+      am: "Կա՞ արդյոք վերելակ",
+      ru: "Есть ли лифт?",
+      en: "Elevator Available?",
     },
     options: [
       {
@@ -987,7 +987,7 @@ export const calculatorFields = {
       {
         value: "difficult",
         label: {
-          am: "Դժվար",
+          am: "Բարդ",
           ru: "Сложно",
           en: "Difficult",
         },
@@ -999,7 +999,7 @@ export const calculatorFields = {
     impact: 2,
     dependency: "advanced",
     label: {
-      am: "Ժամկետի շտապություն",
+      am: "Հրատապություն",
       ru: "Срочность",
       en: "Urgency",
     },
@@ -1061,9 +1061,9 @@ export const calculatorFields = {
       en: "Comment",
     },
     placeholder: {
-      am: "Օր.` ուզվող ժամկետ, դիզայն, լուսանկարների հղում կամ հատուկ պայմաններ",
-      ru: "Напр.: желаемый срок, пожелания по дизайну, ссылка на фото или особенности объекта",
-      en: "e.g. desired timing, design notes, links to photos, or special site conditions",
+      am: "Օր.՝ նախընտրելի ժամկետներ, դիզայնի մաղթանքներ կամ օբյեկտի առանձնահատկություններ",
+      ru: "Напр.: желаемые сроки, пожелания по дизайну или особенности объекта",
+      en: "e.g. desired timing, design preferences, or specific site conditions",
     },
   },
 };
@@ -1596,16 +1596,15 @@ export const calculatorProjectAdjustmentLabels = {
   districtCoefficient: createI18nValue("Շրջանի գործակից", "Коэффициент района", "District Coefficient"),
   propertyCoefficient: createI18nValue("Օբյեկտի գործակից", "Коэффициент объекта", "Property Coefficient"),
   conditionCoefficient: createI18nValue("Վիճակի գործակից", "Коэффициент состояния", "Condition Coefficient"),
-  engineeringCoefficient: createI18nValue("Ինժեներական համակարգեր", "Инженерные системы", "Engineering Scope"),
+  engineeringCoefficient: createI18nValue("Ինժեներական համակարգեր", "Инженерные системы", "Engineering Systems"),
   wetZoneCoefficient: createI18nValue("Խոնավ գոտիներ", "Мокрые зоны", "Wet Zones"),
   accessCoefficient: createI18nValue("Մուտք և լոգիստիկա", "Доступ и логистика", "Access & Logistics"),
   urgencyCoefficient: createI18nValue("Շտապություն", "Срочность", "Urgency"),
-  demolitionScope: createI18nValue("Դեմոնտաժ", "Демонтаж", "Demolition"),
-  replanning: createI18nValue("Վերապլանավորում", "Перепланировка", "Replanning"),
+  demolitionScope: createI18nValue("Ապամոնտաժում", "Демонтаж", "Demolition"),
+  replanning: createI18nValue("Վերահատակագծում", "Перепланировка", "Replanning"),
   cityLogistics: createI18nValue("Քաղաքային լոգիստիկա", "Городская логистика", "City Logistics"),
-  floorSurcharge: createI18nValue("Հարկայնության հավելավճար", "Надбавка за этаж", "Floor Surcharge"),
+  floorSurcharge: createI18nValue("Հարկի հավելավճար", "Надбавка за этаж", "Floor Surcharge"),
 };
-
 export const calculatorPricingConfig = {
   roundingStep: 500,
   packageCoefficients: {
