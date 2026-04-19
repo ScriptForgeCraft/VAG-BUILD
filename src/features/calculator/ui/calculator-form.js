@@ -145,6 +145,7 @@ export function renderCalculatorForm() {
               layoutClass: "choice-stack",
               buttonClass: "choice-button choice-button--wide",
             })}
+            ${renderHint(calculatorText.pricingPackageHint)}
           </section>
 
           <section class="calculator-panel" data-step="3" hidden>
@@ -157,6 +158,7 @@ export function renderCalculatorForm() {
                 layoutClass: "choice-stack",
                 buttonClass: "choice-button choice-button--wide",
               })}
+              ${renderHint(calculatorText.turnkeyHint)}
 
               <div class="calculator-grid">
                 <div data-visibility="wet-zones">
@@ -197,6 +199,7 @@ export function renderCalculatorForm() {
 
             <div data-visibility="selected-works" hidden>
               ${renderHint(calculatorText.selectedWorksHint)}
+              ${renderHint(calculatorText.selectedWorksCoverageHint)}
               ${renderCheckboxCards({
                 field: "workModules",
                 label: calculatorFields.workModules.label,

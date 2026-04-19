@@ -12,9 +12,9 @@ function getScenarioValue(value, scenarioId) {
   return value?.[scenarioId] ?? 1;
 }
 
-function roundEstimate(value) {
+function roundEstimate(value, roundingStep = calculatorPricingConfig.roundingStep) {
   const rounded = Math.max(0, value);
-  return Math.round(rounded / calculatorPricingConfig.roundingStep) * calculatorPricingConfig.roundingStep;
+  return Math.round(rounded / roundingStep) * roundingStep;
 }
 
 function getDistrictCoefficient(form) {
@@ -91,10 +91,10 @@ function calculateFullRenovationScenario(form, scenarioId) {
   return roundEstimate(subtotal * (1 + getReserveRatio(scenarioId)));
 }
 
-function getSelectedWorkPackageCoefficient(fieldName, pricingPackage, scenarioId) {
-  const fieldConfig = calculatorPricingConfig.selectedWorkPackageCoefficients[fieldName];
+function getSelectedWorkRate(fieldName, pricingPackage, scenarioId) {
+  const fieldConfig = calculatorPricingConfig.selectedWorkPackageRates[fieldName];
   if (!fieldConfig) {
-    return 1;
+    return 0;
   }
 
   return getScenarioValue(fieldConfig[pricingPackage], scenarioId);
@@ -114,10 +114,9 @@ function calculateSelectedWorksScenario(form, scenarioId) {
 
     fields.forEach((fieldName) => {
       const quantity = Number(form[fieldName]) || 0;
-      const rate = getScenarioValue(calculatorPricingConfig.selectedWorkRates[fieldName], scenarioId);
-      const packageCoefficient = getSelectedWorkPackageCoefficient(fieldName, form.pricingPackage, scenarioId);
+      const rate = getSelectedWorkRate(fieldName, form.pricingPackage, scenarioId);
 
-      subtotal += quantity * rate * packageCoefficient;
+      subtotal += quantity * rate;
     });
   });
 
@@ -127,10 +126,10 @@ function calculateSelectedWorksScenario(form, scenarioId) {
   subtotal *= getScenarioValue(calculatorPricingConfig.accessCoefficients[form.accessLevel], scenarioId);
   subtotal *= getScenarioValue(calculatorPricingConfig.urgencyCoefficients[form.urgency], scenarioId);
 
-  subtotal += getCityLogistics(form, scenarioId);
-  subtotal += getFloorSurcharge(form, scenarioId);
-
-  return roundEstimate(subtotal * (1 + getReserveRatio(scenarioId)));
+  return roundEstimate(
+    subtotal * (1 + getReserveRatio(scenarioId)),
+    calculatorPricingConfig.selectedWorksRoundingStep
+  );
 }
 
 export function calculateEstimateScenarios(form) {

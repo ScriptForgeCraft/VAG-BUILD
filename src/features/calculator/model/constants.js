@@ -29,6 +29,21 @@ export const calculatorText = {
     ru: "Отметьте только те работы, которые нужно посчитать. Остальные поля откроются по логике выбора.",
     en: "Select only the works you want to estimate. The remaining fields will open based on your selection.",
   },
+  selectedWorksCoverageHint: {
+    am: "Եթե դիրքի համար առանձին դաշտ չկա, այն ավտոմատ չի մտնում հաշվարկի մեջ։ Օրինակ` կահույք, տեխնիկա, հեռուստացույց, դեկոր և այլ առանձին համաձայնեցվող իրեր։",
+    ru: "Если для позиции нет отдельного поля, она не попадает в автоподсчёт. Например: мебель, техника, телевизоры, декор и другие отдельно согласуемые позиции.",
+    en: "If an item has no separate field, it is not included in the automatic estimate. For example: furniture, appliances, TVs, decor, and other separately agreed items.",
+  },
+  pricingPackageHint: {
+    am: "«Բոլոր նյութերը» նշանակում է շինարարական և հարդարման նյութեր վերանորոգման նախահաշվում։ Կահույք, կենցաղային տեխնիկա, հեռուստացույց, տեքստիլ և դեկոր այստեղ չեն մտնում, եթե առանձին նշված չեն։",
+    ru: "Пакет «все материалы» означает строительные и отделочные материалы в рамках ремонтной сметы. Мебель, техника, телевизоры, текстиль и декор сюда не входят, если не добавлены отдельно.",
+    en: "The “all materials” package means construction and finish materials within the renovation budget. Furniture, appliances, TVs, textiles, and decor are not included unless listed separately.",
+  },
+  turnkeyHint: {
+    am: "Այս հաշվիչում «բանալիով» նշանակում է ամբողջական վերանորոգման ցիկլ մինչև պատրաստ բնակվելու կամ հանձնելու վիճակ, բայց առանց առանձին համաձայնեցվող կահույքի, տեխնիկայի և դեկորի։",
+    ru: "В этом калькуляторе «под ключ» означает полный цикл ремонта до состояния готовности к заселению или сдаче, но без отдельно согласуемых позиций: мебели, техники и декора.",
+    en: "In this calculator, “turnkey” means a full renovation cycle to move-in or handover readiness, but without separately approved items such as furniture, appliances, or decor.",
+  },
   contactHint: {
     am: "Թողեք հեռախոսահամարը, և կուղարկենք ավելի ճշգրիտ հաշվարկ ու աշխատանքների կազմը։",
     ru: "Оставьте номер телефона, и мы подготовим более точный расчет и состав работ.",
@@ -455,9 +470,9 @@ export const calculatorFields = {
       {
         value: "labor-plus-all",
         label: {
-          am: "Աշխատանք + բոլոր նյութերը",
-          ru: "Работы + все материалы",
-          en: "Labor + All Materials",
+          am: "Աշխատանք + շինարարական և հարդարման նյութեր",
+          ru: "Работы + строительные и отделочные материалы",
+          en: "Labor + Construction and Finish Materials",
         },
       },
     ],
@@ -995,6 +1010,7 @@ export const calculatorWorkModuleFieldMap = {
 
 export const calculatorPricingConfig = {
   roundingStep: 5000,
+  selectedWorksRoundingStep: 500,
   fullRenovationRates: {
     cosmetic: {
       minimal: 45000,
@@ -1202,183 +1218,117 @@ export const calculatorPricingConfig = {
       high: 6500,
     },
   },
-  selectedWorkRates: {
-    demolitionArea: {
-      minimal: 2000,
-      realistic: 3000,
-      high: 4000,
-    },
-    electricalPoints: {
-      minimal: 2500,
-      realistic: 3750,
-      high: 5000,
-    },
-    plumbingPoints: {
-      minimal: 8000,
-      realistic: 10000,
-      high: 13000,
-    },
-    screedArea: {
-      minimal: 3000,
-      realistic: 4000,
-      high: 5000,
-    },
-    tileArea: {
-      minimal: 8000,
-      realistic: 11000,
-      high: 15000,
-    },
-    paintArea: {
-      minimal: 2500,
-      realistic: 3500,
-      high: 4500,
-    },
-    laminateArea: {
-      minimal: 2000,
-      realistic: 2750,
-      high: 3500,
-    },
-    plinthLength: {
-      minimal: 700,
-      realistic: 1000,
-      high: 1200,
-    },
-  },
-  selectedWorkPackageCoefficients: {
+  selectedWorkPackageRates: {
     demolitionArea: {
       "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 2000,
+        realistic: 3000,
+        high: 4000,
       },
       "labor-plus-rough": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 2000,
+        realistic: 3000,
+        high: 4000,
       },
       "labor-plus-all": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 2000,
+        realistic: 3000,
+        high: 4000,
       },
     },
     electricalPoints: {
-      "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
-      },
-      "labor-plus-rough": {
-        minimal: 1.35,
-        realistic: 1.45,
-        high: 1.55,
-      },
-      "labor-plus-all": {
-        minimal: 1.6,
-        realistic: 1.8,
-        high: 2.1,
-      },
+      "labor-only": 3000,
+      "labor-plus-rough": 5455,
+      "labor-plus-all": 5455,
     },
     plumbingPoints: {
       "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 8000,
+        realistic: 10000,
+        high: 13000,
       },
       "labor-plus-rough": {
-        minimal: 1.35,
-        realistic: 1.45,
-        high: 1.55,
+        minimal: 10800,
+        realistic: 14500,
+        high: 20150,
       },
       "labor-plus-all": {
-        minimal: 1.7,
-        realistic: 1.9,
-        high: 2.2,
+        minimal: 13600,
+        realistic: 19000,
+        high: 28600,
       },
     },
     screedArea: {
       "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 3000,
+        realistic: 4000,
+        high: 5000,
       },
       "labor-plus-rough": {
-        minimal: 1.35,
-        realistic: 1.45,
-        high: 1.55,
+        minimal: 4050,
+        realistic: 5800,
+        high: 7750,
       },
       "labor-plus-all": {
-        minimal: 1.35,
-        realistic: 1.45,
-        high: 1.55,
+        minimal: 4050,
+        realistic: 5800,
+        high: 7750,
       },
     },
     tileArea: {
-      "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
-      },
-      "labor-plus-rough": {
-        minimal: 1.25,
-        realistic: 1.35,
-        high: 1.45,
-      },
-      "labor-plus-all": {
-        minimal: 1.6,
-        realistic: 1.85,
-        high: 2.2,
-      },
+      "labor-only": 6000,
+      "labor-plus-rough": 6000,
+      "labor-plus-all": 16000,
     },
     paintArea: {
       "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 2500,
+        realistic: 3500,
+        high: 4500,
       },
       "labor-plus-rough": {
-        minimal: 1.2,
-        realistic: 1.3,
-        high: 1.4,
+        minimal: 3000,
+        realistic: 4550,
+        high: 6300,
       },
       "labor-plus-all": {
-        minimal: 1.45,
-        realistic: 1.65,
-        high: 1.9,
+        minimal: 3625,
+        realistic: 5775,
+        high: 8550,
       },
     },
     laminateArea: {
       "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 2000,
+        realistic: 2750,
+        high: 3500,
       },
       "labor-plus-rough": {
-        minimal: 1.05,
-        realistic: 1.08,
-        high: 1.12,
+        minimal: 2100,
+        realistic: 2970,
+        high: 3920,
       },
       "labor-plus-all": {
-        minimal: 2,
-        realistic: 2.3,
-        high: 2.7,
+        minimal: 4000,
+        realistic: 6325,
+        high: 9450,
       },
     },
     plinthLength: {
       "labor-only": {
-        minimal: 1,
-        realistic: 1,
-        high: 1,
+        minimal: 700,
+        realistic: 1000,
+        high: 1200,
       },
       "labor-plus-rough": {
-        minimal: 1.02,
-        realistic: 1.05,
-        high: 1.08,
+        minimal: 714,
+        realistic: 1050,
+        high: 1296,
       },
       "labor-plus-all": {
-        minimal: 1.6,
-        realistic: 1.8,
-        high: 2.1,
+        minimal: 1120,
+        realistic: 1800,
+        high: 2520,
       },
     },
   },
