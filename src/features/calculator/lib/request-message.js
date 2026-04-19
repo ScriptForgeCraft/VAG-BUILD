@@ -34,6 +34,14 @@ function getUnit(fieldName, language) {
     }[language];
   }
 
+  if (fieldName === "plumberHours") {
+    return {
+      am: " ժ",
+      ru: " ч.",
+      en: " hr",
+    }[language];
+  }
+
   if (fieldName === "plinthLength") {
     return {
       am: " գծ.մ.",

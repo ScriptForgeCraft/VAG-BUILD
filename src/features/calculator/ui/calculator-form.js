@@ -10,9 +10,12 @@ import {
   renderTextareaField,
 } from "../../../shared/ui/form-controls.js";
 import { escapeHtml } from "../../../shared/lib/html.js";
-import { createI18nTextAttributes } from "../../../shared/lib/i18n.js";
+import { createI18nTextAttributes, getTranslation } from "../../../shared/lib/i18n.js";
 import { formatNumber } from "../../../shared/lib/number.js";
-import { calculateEstimateScenarios } from "../lib/estimate-formula.js";
+import {
+  calculateEstimateScenarioBreakdowns,
+  calculateEstimateScenarios,
+} from "../lib/estimate-formula.js";
 import {
   calculatorFields,
   calculatorProgressSteps,
@@ -20,6 +23,59 @@ import {
   calculatorText,
   initialCalculatorForm,
 } from "../model/constants.js";
+
+const breakdownUnitLabels = {
+  point: {
+    am: "կետ",
+    ru: "точка",
+    en: "point",
+  },
+  m2: {
+    am: "մ²",
+    ru: "м²",
+    en: "sqm",
+  },
+  job: {
+    am: "աշխատանք",
+    ru: "задача",
+    en: "job",
+  },
+  hour: {
+    am: "ժամ",
+    ru: "час",
+    en: "hour",
+  },
+  door: {
+    am: "դուռ",
+    ru: "дверь",
+    en: "door",
+  },
+  pcs: {
+    am: "հատ",
+    ru: "шт.",
+    en: "pcs",
+  },
+  sheet: {
+    am: "թերթ",
+    ru: "лист",
+    en: "sheet",
+  },
+  bag: {
+    am: "պարկ",
+    ru: "мешок",
+    en: "bag",
+  },
+  project: {
+    am: "նախագիծ",
+    ru: "проект",
+    en: "project",
+  },
+  lm: {
+    am: "գծ.մ.",
+    ru: "п.м.",
+    en: "lm",
+  },
+};
 
 function renderProgressStep(item) {
   return `
@@ -60,8 +116,150 @@ function renderScenarioCard(item, estimates) {
   `;
 }
 
+function getBreakdownItemLabel(item) {
+  return calculatorFields[item.fieldName]?.label || item.label;
+}
+
+function getBreakdownUnitLabel(unit) {
+  return breakdownUnitLabels[unit] || {
+    am: unit || "",
+    ru: unit || "",
+    en: unit || "",
+  };
+}
+
+function renderBreakdownChip(label, value, language) {
+  return `
+    <span class="estimate-breakdown__chip">
+      <span ${createI18nTextAttributes(label)}>${escapeHtml(getTranslation(label, language))}</span>
+      <strong>${formatNumber(value)} AMD</strong>
+    </span>
+  `;
+}
+
+function renderBreakdownItem(item, language) {
+  const itemLabel = getBreakdownItemLabel(item);
+  const unitLabel = getBreakdownUnitLabel(item.unit);
+  const detailChips = [
+    item.laborSubtotal > 0 ? renderBreakdownChip(calculatorText.breakdownLabor, item.laborSubtotal, language) : "",
+    item.materialSubtotal > 0
+      ? renderBreakdownChip(calculatorText.breakdownMaterial, item.materialSubtotal, language)
+      : "",
+    item.packageSubtotal > 0
+      ? renderBreakdownChip(calculatorText.breakdownPackage, item.packageSubtotal, language)
+      : "",
+    item.minimumOrderAdjustment > 0
+      ? renderBreakdownChip(calculatorText.breakdownMinimumOrder, item.minimumOrderAdjustment, language)
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
+
+  return `
+    <article class="estimate-breakdown__item">
+      <div class="estimate-breakdown__item-top">
+        <div>
+          <p class="estimate-breakdown__item-label" ${createI18nTextAttributes(itemLabel)}>
+            ${escapeHtml(getTranslation(itemLabel, language))}
+          </p>
+          <p class="estimate-breakdown__item-meta">
+            <span ${createI18nTextAttributes(calculatorText.breakdownQuantity)}>
+              ${escapeHtml(getTranslation(calculatorText.breakdownQuantity, language))}
+            </span>
+            <span>${item.quantity} ${escapeHtml(getTranslation(unitLabel, language))}</span>
+          </p>
+        </div>
+
+        <div class="estimate-breakdown__item-total">
+          <span ${createI18nTextAttributes(calculatorText.breakdownFinal)}>
+            ${escapeHtml(getTranslation(calculatorText.breakdownFinal, language))}
+          </span>
+          <strong>${formatNumber(item.finalRoundedTotal)} AMD</strong>
+        </div>
+      </div>
+
+      ${detailChips ? `<div class="estimate-breakdown__chips">${detailChips}</div>` : ""}
+    </article>
+  `;
+}
+
+function renderProjectAdjustments(details, total, language) {
+  if (!details.length) {
+    return "";
+  }
+
+  return `
+    <article class="estimate-breakdown__item estimate-breakdown__item--adjustments">
+      <div class="estimate-breakdown__item-top">
+        <div>
+          <p class="estimate-breakdown__item-label" ${createI18nTextAttributes(calculatorText.breakdownProjectAdjustments)}>
+            ${escapeHtml(getTranslation(calculatorText.breakdownProjectAdjustments, language))}
+          </p>
+        </div>
+
+        <div class="estimate-breakdown__item-total">
+          <span ${createI18nTextAttributes(calculatorText.breakdownFinal)}>
+            ${escapeHtml(getTranslation(calculatorText.breakdownFinal, language))}
+          </span>
+          <strong>${formatNumber(total)} AMD</strong>
+        </div>
+      </div>
+
+      <div class="estimate-breakdown__details">
+        ${details
+          .map(
+            (detail) => `
+              <div class="estimate-breakdown__detail">
+                <span ${createI18nTextAttributes(detail.label)}>${escapeHtml(getTranslation(detail.label, language))}</span>
+                <strong>${detail.amount >= 0 ? "+" : ""}${formatNumber(detail.amount)} AMD</strong>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </article>
+  `;
+}
+
+export function renderEstimateBreakdown({ breakdown, form, language = "am" }) {
+  const summaryText =
+    form.estimateMode === "selected-works"
+      ? calculatorText.breakdownSelectedWorksHint
+      : calculatorText.breakdownFullRenovationHint;
+  const itemsMarkup = breakdown.items.map((item) => renderBreakdownItem(item, language)).join("");
+  const adjustmentsMarkup = renderProjectAdjustments(
+    breakdown.projectAdjustmentDetails,
+    breakdown.projectAdjustmentTotal,
+    language
+  );
+  const content =
+    itemsMarkup || adjustmentsMarkup
+      ? `${itemsMarkup}${adjustmentsMarkup}`
+      : `<p class="estimate-breakdown__empty" ${createI18nTextAttributes(calculatorText.breakdownEmpty)}>
+          ${escapeHtml(getTranslation(calculatorText.breakdownEmpty, language))}
+        </p>`;
+
+  return `
+    <div class="estimate-breakdown">
+      <div class="estimate-breakdown__header">
+        <p class="estimate-breakdown__label" ${createI18nTextAttributes(calculatorText.breakdownLabel)}>
+          ${escapeHtml(getTranslation(calculatorText.breakdownLabel, language))}
+        </p>
+        <p class="estimate-breakdown__summary" ${createI18nTextAttributes(summaryText)}>
+          ${escapeHtml(getTranslation(summaryText, language))}
+        </p>
+      </div>
+
+      <div class="estimate-breakdown__list">
+        ${content}
+      </div>
+    </div>
+  `;
+}
+
 export function renderCalculatorForm() {
   const initialEstimates = calculateEstimateScenarios(initialCalculatorForm);
+  const initialBreakdowns = calculateEstimateScenarioBreakdowns(initialCalculatorForm);
 
   return `
     <div class="calculator-card">
@@ -238,6 +436,16 @@ export function renderCalculatorForm() {
                     min: 0,
                   })}
                 </div>
+                <div data-visibility="module-plumbing" hidden>
+                  ${renderNumberField({
+                    id: "plumber-hours",
+                    name: "plumberHours",
+                    label: calculatorFields.plumberHours.label,
+                    placeholder: calculatorFields.plumberHours.placeholder,
+                    value: initialCalculatorForm.plumberHours,
+                    min: 0,
+                  })}
+                </div>
                 <div data-visibility="module-screed" hidden>
                   ${renderNumberField({
                     id: "screed-area",
@@ -344,6 +552,13 @@ export function renderCalculatorForm() {
               <p class="estimate-box__note" ${createI18nTextAttributes(calculatorText.estimateNote)}>
                 ${escapeHtml(calculatorText.estimateNote.am)}
               </p>
+            </div>
+
+            <div data-estimate-breakdown-root>
+              ${renderEstimateBreakdown({
+                breakdown: initialBreakdowns.realistic,
+                form: initialCalculatorForm,
+              })}
             </div>
 
             ${renderHint(calculatorText.contactHint)}

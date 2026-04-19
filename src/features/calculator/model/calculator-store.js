@@ -6,6 +6,7 @@ const NUMERIC_FIELDS = new Set([
   "demolitionArea",
   "electricalPoints",
   "plumbingPoints",
+  "plumberHours",
   "screedArea",
   "tileArea",
   "paintArea",
@@ -32,6 +33,7 @@ const NUMERIC_FIELDS = new Set([
  * @property {number} demolitionArea
  * @property {number} electricalPoints
  * @property {number} plumbingPoints
+ * @property {number} plumberHours
  * @property {number} screedArea
  * @property {number} tileArea
  * @property {number} paintArea

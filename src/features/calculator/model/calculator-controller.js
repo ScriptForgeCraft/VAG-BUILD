@@ -2,8 +2,12 @@ import { appStore } from "../../../app/model/app-store.js";
 import { siteConfig } from "../../../shared/config/site-config.js";
 import { formatNumber } from "../../../shared/lib/number.js";
 import { openWhatsAppMessage } from "../../../shared/lib/whatsapp.js";
-import { calculateEstimateScenarios } from "../lib/estimate-formula.js";
+import {
+  calculateEstimateScenarioBreakdowns,
+  calculateEstimateScenarios,
+} from "../lib/estimate-formula.js";
 import { buildCalculatorRequestLines } from "../lib/request-message.js";
+import { renderEstimateBreakdown } from "../ui/calculator-form.js";
 import { calculatorStore, setCalculatorStep, updateCalculatorField } from "./calculator-store.js";
 
 function syncChoiceButtons(formState, root) {
@@ -130,9 +134,12 @@ export function initCalculatorController() {
   const backButton = document.querySelector("[data-calculator-back]");
   const nextButton = document.querySelector("[data-calculator-next]");
   const sendButton = document.querySelector("[data-calculator-send]");
+  const breakdownRoot = document.querySelector("[data-estimate-breakdown-root]");
 
   const syncView = ({ step, form }) => {
     const estimates = calculateEstimateScenarios(form);
+    const breakdowns = calculateEstimateScenarioBreakdowns(form);
+    const { language } = appStore.getState();
 
     syncChoiceButtons(form, calculatorForm);
     syncCheckboxCards(form, calculatorForm);
@@ -148,6 +155,14 @@ export function initCalculatorController() {
       const scenarioId = element.dataset.estimateValue;
       element.textContent = formatNumber(estimates[scenarioId] || 0);
     });
+
+    if (breakdownRoot) {
+      breakdownRoot.innerHTML = renderEstimateBreakdown({
+        breakdown: breakdowns.realistic,
+        form,
+        language,
+      });
+    }
   };
 
   const unsubscribe = calculatorStore.subscribe(syncView);
