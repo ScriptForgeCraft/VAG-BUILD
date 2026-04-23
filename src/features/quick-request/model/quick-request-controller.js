@@ -3,13 +3,20 @@ import { siteConfig } from "../../../shared/config/site-config.js";
 import { openWhatsAppMessage } from "../../../shared/lib/whatsapp.js";
 import { applyPhoneValidation } from "../../../shared/lib/validation.js";
 import { buildQuickRequestLines } from "../lib/quick-request-message.js";
-import { quickRequestStore, updateQuickRequestField } from "./quick-request-store.js";
+
+function getQuickRequestFormData(form) {
+  const formData = new FormData(form);
+
+  return {
+    quickName: String(formData.get("quickName") || "").trim(),
+    quickPhone: String(formData.get("quickPhone") || "").trim(),
+  };
+}
 
 export function initQuickRequestController() {
   const quickForm = document.getElementById("quick-form");
-  const sendButton = document.querySelector("[data-quick-send]");
 
-  if (!quickForm || !sendButton) {
+  if (!quickForm) {
     return () => {};
   }
 
@@ -19,14 +26,14 @@ export function initQuickRequestController() {
       return;
     }
 
-    updateQuickRequestField(field.name, field.value.trim());
-
     if (field.name === "quickPhone") {
       applyPhoneValidation(field, appStore.getState().language);
     }
   };
 
-  const handleSend = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
     const { language } = appStore.getState();
     const phoneField = quickForm.querySelector('input[name="quickPhone"]');
 
@@ -42,16 +49,16 @@ export function initQuickRequestController() {
       phone: siteConfig.phone.raw,
       lines: buildQuickRequestLines({
         language,
-        form: quickRequestStore.getState(),
+        form: getQuickRequestFormData(quickForm),
       }),
     });
   };
 
   quickForm.addEventListener("input", handleInput);
-  sendButton.addEventListener("click", handleSend);
+  quickForm.addEventListener("submit", handleSubmit);
 
   return () => {
     quickForm.removeEventListener("input", handleInput);
-    sendButton.removeEventListener("click", handleSend);
+    quickForm.removeEventListener("submit", handleSubmit);
   };
 }

@@ -11,7 +11,9 @@ function syncChoiceButtons(formState, root) {
   root.querySelectorAll("[data-choice]").forEach((button) => {
     const field = button.dataset.field;
     const value = button.dataset.value;
-    button.classList.toggle("is-selected", Boolean(field && formState[field] === value));
+    const isSelected = Boolean(field && formState[field] === value);
+    button.classList.toggle("is-selected", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
   });
 }
 
@@ -40,8 +42,15 @@ function syncPanels(step, panels, indicators, backButton, nextButton, sendButton
 
   indicators.forEach((indicator) => {
     const indicatorStep = Number(indicator.dataset.stepIndicator);
-    indicator.classList.toggle("is-active", indicatorStep === step);
+    const active = indicatorStep === step;
+    indicator.classList.toggle("is-active", active);
     indicator.classList.toggle("is-complete", indicatorStep < step);
+    if (active) {
+      indicator.setAttribute("aria-current", "step");
+      return;
+    }
+
+    indicator.removeAttribute("aria-current");
   });
 
   backButton?.classList.toggle("is-hidden", step === 1);
@@ -123,13 +132,14 @@ export function initCalculatorController() {
     return () => {};
   }
 
-  const areaValue = document.querySelector("[data-area-value]");
-  const estimateValues = Array.from(document.querySelectorAll("[data-estimate-value]"));
-  const panels = document.querySelectorAll(".calculator-panel");
-  const indicators = document.querySelectorAll("[data-step-indicator]");
-  const backButton = document.querySelector("[data-calculator-back]");
-  const nextButton = document.querySelector("[data-calculator-next]");
-  const sendButton = document.querySelector("[data-calculator-send]");
+  const calculatorCard = calculatorForm.closest(".calculator-card") || calculatorForm.parentElement || document;
+  const areaValue = calculatorForm.querySelector("[data-area-value]");
+  const estimateValues = Array.from(calculatorForm.querySelectorAll("[data-estimate-value]"));
+  const panels = calculatorForm.querySelectorAll(".calculator-panel");
+  const indicators = calculatorCard.querySelectorAll("[data-step-indicator]");
+  const backButton = calculatorForm.querySelector("[data-calculator-back]");
+  const nextButton = calculatorForm.querySelector("[data-calculator-next]");
+  const sendButton = calculatorForm.querySelector("[data-calculator-send]");
 
   const syncView = ({ step, form }) => {
     const estimates = calculateEstimateScenarios(form);
@@ -225,21 +235,30 @@ export function initCalculatorController() {
       }),
     });
   };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (calculatorStore.getState().step !== 4) {
+      return;
+    }
+
+    handleSend();
+  };
 
   calculatorForm.addEventListener("click", handleChoiceClick);
   calculatorForm.addEventListener("input", handleFieldInput);
   calculatorForm.addEventListener("change", handleFieldInput);
+  calculatorForm.addEventListener("submit", handleSubmit);
   backButton?.addEventListener("click", handleBack);
   nextButton?.addEventListener("click", handleNext);
-  sendButton?.addEventListener("click", handleSend);
 
   return () => {
     unsubscribe();
     calculatorForm.removeEventListener("click", handleChoiceClick);
     calculatorForm.removeEventListener("input", handleFieldInput);
     calculatorForm.removeEventListener("change", handleFieldInput);
+    calculatorForm.removeEventListener("submit", handleSubmit);
     backButton?.removeEventListener("click", handleBack);
     nextButton?.removeEventListener("click", handleNext);
-    sendButton?.removeEventListener("click", handleSend);
   };
 }

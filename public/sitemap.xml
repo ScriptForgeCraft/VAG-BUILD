@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://renovate.am/am/</loc>
+    <loc>https://vag.am/am/</loc>
     <lastmod>2026-04-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="hy" href="https://renovate.am/am/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://renovate.am/ru/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renovate.am/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renovate.am/am/" />
+    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://vag.am/ru/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vag.am/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/am/" />
   </url>
   <url>
-    <loc>https://renovate.am/ru/</loc>
+    <loc>https://vag.am/ru/</loc>
     <lastmod>2026-04-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="hy" href="https://renovate.am/am/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://renovate.am/ru/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renovate.am/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renovate.am/am/" />
+    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://vag.am/ru/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vag.am/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/am/" />
   </url>
   <url>
-    <loc>https://renovate.am/en/</loc>
+    <loc>https://vag.am/en/</loc>
     <lastmod>2026-04-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="hy" href="https://renovate.am/am/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://renovate.am/ru/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://renovate.am/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://renovate.am/am/" />
+    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://vag.am/ru/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://vag.am/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/am/" />
   </url>
 </urlset>

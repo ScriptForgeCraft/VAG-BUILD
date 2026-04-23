@@ -49,6 +49,11 @@ export const calculatorText = {
     ru: "Оставьте ваш номер телефона, и мы подготовим более точный расчет и подробный перечень работ.",
     en: "Leave your phone number, and we will prepare a more accurate estimate and detailed scope of work.",
   },
+  javascriptHint: {
+    am: "Հաշվիչի ինտերակտիվ քայլերը աշխատում են JavaScript-ով. առանց դրա կարող եք անմիջապես կապվել մեզ հետ հեռախոսով կամ WhatsApp-ով։",
+    ru: "Интерактивные шаги калькулятора работают через JavaScript. Без него можно сразу связаться с нами по телефону или в WhatsApp.",
+    en: "The calculator steps require JavaScript. Without it, you can contact us directly by phone or WhatsApp.",
+  },
   backButton: {
     am: "Հետ",
     ru: "Назад",

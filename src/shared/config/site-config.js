@@ -4,7 +4,7 @@ export const siteConfig = {
     raw: "37499444660",
     display: "+374 99 444 660",
   },
-  email: "info@renovate.am",
+  email: "info@vag.am",
   location: {
     am: "Հայաստան, Երևան",
     ru: "Армения, Ереван",

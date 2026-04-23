@@ -14,6 +14,11 @@ export function initMobileMenuController() {
     mobileMenu.hidden = !mobileMenuOpen;
     mobileToggle.classList.toggle("is-open", mobileMenuOpen);
     mobileToggle.setAttribute("aria-expanded", String(mobileMenuOpen));
+    mobileToggle.setAttribute(
+      "aria-label",
+      mobileMenuOpen ? mobileToggle.dataset.menuCloseLabel || "Close menu" : mobileToggle.dataset.menuOpenLabel || "Open menu"
+    );
+    mobileMenu.setAttribute("aria-hidden", String(!mobileMenuOpen));
     document.body.classList.toggle("menu-open", mobileMenuOpen);
   };
 
@@ -33,11 +38,17 @@ export function initMobileMenuController() {
   const handleScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 24);
   };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape" && appStore.getState().mobileMenuOpen) {
+      setMobileMenuOpen(false);
+    }
+  };
 
   mobileToggle.addEventListener("click", handleToggle);
   mobileLinks.forEach((link) => link.addEventListener("click", handleLinkClick));
   window.addEventListener("resize", handleResize);
   window.addEventListener("scroll", handleScroll);
+  window.addEventListener("keydown", handleKeyDown);
   handleScroll();
 
   return () => {
@@ -46,5 +57,6 @@ export function initMobileMenuController() {
     mobileLinks.forEach((link) => link.removeEventListener("click", handleLinkClick));
     window.removeEventListener("resize", handleResize);
     window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("keydown", handleKeyDown);
   };
 }

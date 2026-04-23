@@ -138,10 +138,10 @@ export function renderChoiceButtons({
 
 export function renderSegmentedButtons({ field, label, options, selectedValue, compact = false }) {
   return `
-    <div class="field-group">
-      <span class="field-label" data-field-label="${escapeAttribute(field)}">
+    <fieldset class="field-group calculator-fieldset">
+      <legend class="field-label" data-field-label="${escapeAttribute(field)}">
         <span ${createI18nTextAttributes(label)}>${escapeHtml(label.am)}</span>
-      </span>
+      </legend>
       <div class="segmented-control${compact ? " segmented-control--compact" : ""}">
         ${options
           .map((option) =>
@@ -154,7 +154,7 @@ export function renderSegmentedButtons({ field, label, options, selectedValue, c
           )
           .join("")}
       </div>
-    </div>
+    </fieldset>
   `;
 }
 
@@ -226,7 +226,7 @@ export function renderRangeField({ id, name, fieldName = name, label, value, min
         fieldName,
         forId: id,
         classes: "field-label field-label--range",
-        suffixHtml: `<strong><span data-area-value>${escapeHtml(value)}</span> m²</strong>`,
+        suffixHtml: `<strong><output for="${escapeAttribute(id)}" data-area-value>${escapeHtml(value)}</output> m²</strong>`,
       })}
       <input
         id="${escapeAttribute(id)}"

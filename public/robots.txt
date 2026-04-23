@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://renovate.am/sitemap.xml
+Sitemap: https://vag.am/sitemap.xml

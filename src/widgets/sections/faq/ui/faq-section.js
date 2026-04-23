@@ -4,9 +4,10 @@ import { createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 
 export function renderFaqSection() {
   return `
-    <section class="section faq" id="faq">
+    <section class="section faq" id="faq" aria-labelledby="faq-title">
       <div class="container faq__container">
         <h2
+          id="faq-title"
           class="section-title section-title--center reveal"
           ${createI18nTextAttributes({
             am: "Հաճախ տրվող հարցեր",

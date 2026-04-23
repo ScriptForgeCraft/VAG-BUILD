@@ -4,9 +4,10 @@ import { createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 
 export function renderTestimonialsSection() {
   return `
-    <section class="section testimonials">
+    <section class="section testimonials" aria-labelledby="testimonials-title">
       <div class="container">
         <h2
+          id="testimonials-title"
           class="section-title section-title--center reveal"
           ${createI18nTextAttributes({
             am: "Հաճախորդների կարծիքները",
@@ -21,16 +22,18 @@ export function renderTestimonialsSection() {
             .map(
               (item) => `
                 <article class="testimonial-card reveal">
-                  <span class="testimonial-card__quote" aria-hidden="true">“</span>
+                  <span class="testimonial-card__quote-mark" aria-hidden="true">“</span>
                   <div class="testimonial-card__stars" aria-hidden="true">★★★★★</div>
-                  <p ${createI18nTextAttributes(item.quote)}>${escapeHtml(item.quote.am)}</p>
-                  <div class="testimonial-card__author">
+                  <blockquote class="testimonial-card__blockquote">
+                    <p ${createI18nTextAttributes(item.quote)}>${escapeHtml(item.quote.am)}</p>
+                  </blockquote>
+                  <footer class="testimonial-card__author">
                     <div class="testimonial-card__avatar">${item.avatar}</div>
                     <div>
                       <strong ${createI18nTextAttributes(item.author)}>${escapeHtml(item.author.am)}</strong>
                       <span ${createI18nTextAttributes(item.meta)}>${escapeHtml(item.meta.am)}</span>
                     </div>
-                  </div>
+                  </footer>
                 </article>
               `
             )

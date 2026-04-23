@@ -46,6 +46,10 @@
   .choice-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .no-js .mobile-menu[hidden] {
+    display: block;
+  }
 }
 
 @media (max-width: 680px) {

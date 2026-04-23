@@ -1,15 +1,16 @@
 import { whyUsItems } from "../../../../entities/advantage/model/why-us-items.js";
+import { teamMedia } from "../../../../shared/config/media.js";
 import { escapeHtml } from "../../../../shared/lib/html.js";
-import { createTeamPlaceholderImage } from "../../../../shared/lib/placeholder-media.js";
 import { createI18nAltAttributes, createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 import { renderIcon } from "../../../../shared/ui/icons.js";
 
 export function renderWhyUsSection() {
   return `
-    <section class="section why-us">
+    <section class="section why-us" aria-labelledby="why-us-title">
       <div class="container why-us__grid">
         <div class="why-us__content">
           <h2
+            id="why-us-title"
             class="reveal"
             ${createI18nTextAttributes({
               am: "Ինչու՞ ընտրել մեզ",
@@ -39,13 +40,16 @@ export function renderWhyUsSection() {
         <div class="why-us__visual reveal">
           <div class="why-us__image">
             <img
-              src="${createTeamPlaceholderImage()}"
+              src="${teamMedia.src}"
+              width="${teamMedia.width}"
+              height="${teamMedia.height}"
               ${createI18nAltAttributes({
                 am: "VAG-ի վարպետների թիմը",
                 ru: "Команда мастеров VAG",
                 en: "VAG renovation team",
               })}
               alt="VAG-ի վարպետների թիմը"
+              decoding="async"
               loading="lazy"
               referrerpolicy="no-referrer"
             />

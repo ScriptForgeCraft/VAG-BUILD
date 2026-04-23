@@ -4,9 +4,10 @@ import { createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 
 export function renderProcessSection() {
   return `
-    <section class="section process">
+    <section class="section process" aria-labelledby="process-title">
       <div class="container">
         <h2
+          id="process-title"
           class="section-title section-title--center reveal"
           ${createI18nTextAttributes({
             am: "Ինչպես ենք մենք աշխատում",

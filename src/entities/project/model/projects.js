@@ -1,13 +1,10 @@
-import { createProjectPlaceholderImage } from "../../../shared/lib/placeholder-media.js";
+import { projectMedia } from "../../../shared/config/media.js";
 
 export const projects = [
   {
-    image: createProjectPlaceholderImage({
-      accent: "#f27d26",
-      primary: "#1f2933",
-      secondary: "#eef3f8",
-      label: "CITY",
-    }),
+    image: projectMedia.city.src,
+    imageWidth: projectMedia.city.width,
+    imageHeight: projectMedia.city.height,
     type: {
       am: "Բնակարան",
       ru: "Квартира",
@@ -30,12 +27,9 @@ export const projects = [
     },
   },
   {
-    image: createProjectPlaceholderImage({
-      accent: "#6c8a5f",
-      primary: "#243127",
-      secondary: "#edf4ef",
-      label: "HOME",
-    }),
+    image: projectMedia.home.src,
+    imageWidth: projectMedia.home.width,
+    imageHeight: projectMedia.home.height,
     type: {
       am: "Տուն",
       ru: "Дом",
@@ -58,12 +52,9 @@ export const projects = [
     },
   },
   {
-    image: createProjectPlaceholderImage({
-      accent: "#d6a328",
-      primary: "#24333c",
-      secondary: "#f7f4e8",
-      label: "OFFICE",
-    }),
+    image: projectMedia.office.src,
+    imageWidth: projectMedia.office.width,
+    imageHeight: projectMedia.office.height,
     type: {
       am: "Կոմերցիոն",
       ru: "Коммерция",

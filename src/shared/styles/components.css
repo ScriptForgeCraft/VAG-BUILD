@@ -331,11 +331,11 @@
 .project-card h3,
 .why-us__item h3,
 .contact-item a,
-.contact-item span:last-child,
+.contact-item__value,
 .testimonial-card strong,
-.site-footer h3,
+.site-footer__title,
 .quick-form h3,
-.trust-item h2 {
+.trust-item__title {
   margin: 0;
   font-weight: 900;
 }
@@ -552,7 +552,7 @@
   list-style: none;
 }
 
-.site-footer h3 {
+.site-footer__title {
   color: var(--color-muted);
   font-size: 0.74rem;
   text-transform: uppercase;

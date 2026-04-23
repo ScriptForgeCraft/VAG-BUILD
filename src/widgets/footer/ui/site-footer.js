@@ -1,9 +1,8 @@
 import { navigationLinks } from "../../../entities/navigation/model/navigation-links.js";
-import { siteConfig } from "../../../shared/config/site-config.js";
 import { escapeAttribute, escapeHtml } from "../../../shared/lib/html.js";
-import { isActionableLink } from "../../../shared/lib/link.js";
 import { createI18nTextAttributes } from "../../../shared/lib/i18n.js";
-import { renderIcon } from "../../../shared/ui/icons.js";
+import { isActionableLink } from "../../../shared/lib/link.js";
+import { renderSocialLinks } from "../../../shared/ui/social-links.js";
 
 const legalLinks = [];
 
@@ -21,23 +20,13 @@ function renderLinks(links) {
 
 export function renderSiteFooter() {
   const actionableLegalLinks = legalLinks.filter((link) => isActionableLink(link.href));
-  const socialLinks = [
-    isActionableLink(siteConfig.socialLinks.instagram)
-      ? `<a href="${escapeAttribute(siteConfig.socialLinks.instagram)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">${renderIcon("instagram")}</a>`
-      : "",
-    isActionableLink(siteConfig.socialLinks.facebook)
-      ? `<a href="${escapeAttribute(siteConfig.socialLinks.facebook)}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">${renderIcon("facebook")}</a>`
-      : "",
-  ]
-    .filter(Boolean)
-    .join("");
 
   return `
     <footer class="site-footer">
       <div class="container">
         <div class="site-footer__grid">
           <div class="site-footer__brand">
-            <a href="#top" class="logo logo--dark" aria-label="${siteConfig.brandName}">
+            <a href="#top" class="logo logo--dark" aria-label="VAG">
               V<span>AG</span>
             </a>
             <p
@@ -51,8 +40,10 @@ export function renderSiteFooter() {
             </p>
           </div>
 
-          <div>
-            <h3
+          <nav class="site-footer__nav" aria-labelledby="footer-navigation-title">
+            <p
+              class="site-footer__title"
+              id="footer-navigation-title"
               ${createI18nTextAttributes({
                 am: "Բաժիններ",
                 ru: "Разделы",
@@ -60,17 +51,19 @@ export function renderSiteFooter() {
               })}
             >
               Բաժիններ
-            </h3>
+            </p>
             <ul class="site-footer__links">
               ${renderLinks(navigationLinks)}
             </ul>
-          </div>
+          </nav>
 
           ${
             actionableLegalLinks.length
               ? `
-                <div>
-                  <h3
+                <nav class="site-footer__nav" aria-labelledby="footer-legal-title">
+                  <p
+                    class="site-footer__title"
+                    id="footer-legal-title"
                     ${createI18nTextAttributes({
                       am: "Իրավական",
                       ru: "Правовая информация",
@@ -78,11 +71,11 @@ export function renderSiteFooter() {
                     })}
                   >
                     Իրավական
-                  </h3>
+                  </p>
                   <ul class="site-footer__links">
                     ${renderLinks(actionableLegalLinks)}
                   </ul>
-                </div>
+                </nav>
               `
               : ""
           }
@@ -90,7 +83,7 @@ export function renderSiteFooter() {
 
         <div class="site-footer__bottom">
           <p>
-            © <span data-current-year>2026</span> ${siteConfig.brandName}.
+            © <span data-current-year>2026</span> VAG.
             <span
               ${createI18nTextAttributes({
                 am: "Բոլոր իրավունքները պաշտպանված են",
@@ -101,7 +94,7 @@ export function renderSiteFooter() {
               Բոլոր իրավունքները պաշտպանված են
             </span>
           </p>
-          ${socialLinks ? `<div class="site-footer__socials">${socialLinks}</div>` : ""}
+          ${renderSocialLinks({ className: "site-footer__socials" })}
         </div>
       </div>
     </footer>

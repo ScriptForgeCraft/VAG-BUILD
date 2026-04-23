@@ -10,7 +10,7 @@ import {
   renderTextareaField,
 } from "../../../shared/ui/form-controls.js";
 import { escapeHtml } from "../../../shared/lib/html.js";
-import { createI18nTextAttributes, getTranslation } from "../../../shared/lib/i18n.js";
+import { createI18nTextAttributes } from "../../../shared/lib/i18n.js";
 import { formatNumber } from "../../../shared/lib/number.js";
 import { PHONE_INPUT_PATTERN } from "../../../shared/lib/validation.js";
 import { calculateEstimateScenarios } from "../lib/estimate-formula.js";
@@ -24,7 +24,7 @@ import {
 
 function renderProgressStep(item) {
   return `
-    <li class="calculator-progress__item${item.step === 1 ? " is-active" : ""}" data-step-indicator="${item.step}">
+    <li class="calculator-progress__item${item.step === 1 ? " is-active" : ""}" data-step-indicator="${item.step}"${item.step === 1 ? ' aria-current="step"' : ""}>
       <span class="calculator-progress__number">${String(item.step).padStart(2, "0")}</span>
       <span ${createI18nTextAttributes(item.label)}>${escapeHtml(item.label.am)}</span>
     </li>
@@ -54,7 +54,7 @@ function renderScenarioCard(item, estimates) {
     <article class="estimate-card estimate-card--${item.id}">
       <p class="estimate-card__label" ${createI18nTextAttributes(item.label)}>${escapeHtml(item.label.am)}</p>
       <p class="estimate-card__value">
-        <span data-estimate-value="${item.id}">${formatNumber(estimates[item.id])}</span>
+        <output data-estimate-value="${item.id}">${formatNumber(estimates[item.id])}</output>
         <span class="estimate-card__currency">AMD</span>
       </p>
       <p class="estimate-card__note" ${createI18nTextAttributes(item.note)}>${escapeHtml(item.note.am)}</p>
@@ -71,7 +71,7 @@ export function renderCalculatorForm() {
         <div class="calculator-card__icon">
           ${renderIcon("calculator")}
         </div>
-        <h2 ${createI18nTextAttributes(calculatorText.title)}>${escapeHtml(calculatorText.title.am)}</h2>
+        <h2 id="calculator-title" ${createI18nTextAttributes(calculatorText.title)}>${escapeHtml(calculatorText.title.am)}</h2>
         <p ${createI18nTextAttributes(calculatorText.description)}>${escapeHtml(calculatorText.description.am)}</p>
 
         <ol class="calculator-progress">
@@ -80,7 +80,7 @@ export function renderCalculatorForm() {
       </aside>
 
       <div class="calculator-card__body">
-        <form class="calculator-form" id="calculator-form">
+        <form class="calculator-form" id="calculator-form" action="#calculator">
           <section class="calculator-panel is-active" data-step="1">
             <div class="calculator-grid">
               ${renderSelectField({
@@ -373,6 +373,8 @@ export function renderCalculatorForm() {
           </section>
 
           <div class="calculator-actions">
+            ${renderHint(calculatorText.javascriptHint, "calculator-hint no-js-only")}
+
             <button class="text-button js-only" type="button" data-calculator-back>
               ${renderIcon("arrow-left")}
               <span ${createI18nTextAttributes(calculatorText.backButton)}>${escapeHtml(calculatorText.backButton.am)}</span>
@@ -388,7 +390,7 @@ export function renderCalculatorForm() {
             })}
 
             ${renderButton({
-              type: "button",
+              type: "submit",
               label: calculatorText.sendButton,
               variant: "primary",
               icon: "send",

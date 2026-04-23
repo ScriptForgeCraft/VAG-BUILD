@@ -2,7 +2,11 @@ import { navigationLinks } from "../../../entities/navigation/model/navigation-l
 import { DEFAULT_LANGUAGE } from "../../../shared/constants/languages.js";
 import { siteConfig } from "../../../shared/config/site-config.js";
 import { escapeAttribute, escapeHtml } from "../../../shared/lib/html.js";
-import { createI18nAriaLabelAttributes, createI18nTextAttributes } from "../../../shared/lib/i18n.js";
+import {
+  createI18nAriaLabelAttributes,
+  createI18nTextAttributes,
+  getTranslation,
+} from "../../../shared/lib/i18n.js";
 import { renderIcon } from "../../../shared/ui/icons.js";
 import { renderLanguageSwitcher } from "../../../shared/ui/language-switcher.js";
 
@@ -19,6 +23,23 @@ function renderNavigation(className, extraAttributes = "") {
 }
 
 export function renderSiteHeader(currentLanguage = DEFAULT_LANGUAGE) {
+  const mobileMenuOpenLabel = getTranslation(
+    {
+      am: "Բացել մենյուն",
+      ru: "Открыть меню",
+      en: "Open menu",
+    },
+    currentLanguage
+  );
+  const mobileMenuCloseLabel = getTranslation(
+    {
+      am: "Փակել մենյուն",
+      ru: "Закрыть меню",
+      en: "Close menu",
+    },
+    currentLanguage
+  );
+
   return `
     <header class="site-header" id="top">
       <div class="container site-header__inner">
@@ -49,6 +70,9 @@ export function renderSiteHeader(currentLanguage = DEFAULT_LANGUAGE) {
           data-mobile-toggle
           aria-expanded="false"
           aria-controls="mobile-menu"
+          aria-label="${escapeAttribute(mobileMenuOpenLabel)}"
+          data-menu-open-label="${escapeAttribute(mobileMenuOpenLabel)}"
+          data-menu-close-label="${escapeAttribute(mobileMenuCloseLabel)}"
         >
           ${renderIcon("menu", "icon icon--menu")}
           ${renderIcon("close", "icon icon--close")}

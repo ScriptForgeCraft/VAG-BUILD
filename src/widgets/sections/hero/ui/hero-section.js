@@ -1,5 +1,5 @@
+import { heroMedia } from "../../../../shared/config/media.js";
 import { escapeHtml } from "../../../../shared/lib/html.js";
-import { createHeroPlaceholderImage } from "../../../../shared/lib/placeholder-media.js";
 import { createI18nAltAttributes, createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 import { renderButton } from "../../../../shared/ui/button.js";
 import { renderIcon } from "../../../../shared/ui/icons.js";
@@ -33,7 +33,7 @@ const heroStats = [
 
 export function renderHeroSection() {
   return `
-    <section class="hero section">
+    <section class="hero section" aria-labelledby="hero-title">
       <div class="container hero__grid">
         <div class="hero__content reveal">
           <div class="hero__eyebrow">
@@ -51,6 +51,7 @@ export function renderHeroSection() {
           </div>
 
           <h1
+            id="hero-title"
             class="hero__title"
             ${createI18nTextAttributes({
               am: "Պրոֆեսիոնալ վերանորոգում Հայաստանում",
@@ -111,13 +112,17 @@ export function renderHeroSection() {
         <div class="hero__visual reveal">
           <div class="hero__image-frame">
             <img
-              src="${createHeroPlaceholderImage()}"
+              src="${heroMedia.src}"
+              width="${heroMedia.width}"
+              height="${heroMedia.height}"
               ${createI18nAltAttributes({
                 am: "Պրեմիում վերանորոգման ինտերիեր Հայաստանում",
                 ru: "Премиальный интерьер после ремонта в Армении",
                 en: "Premium renovated interior in Armenia",
               })}
               alt="Պրեմիում վերանորոգման ինտերիեր Հայաստանում"
+              decoding="async"
+              fetchpriority="high"
               referrerpolicy="no-referrer"
             />
           </div>

@@ -130,6 +130,9 @@
 }
 
 .trust-strip__grid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
@@ -139,12 +142,13 @@
   align-items: flex-start;
 }
 
-.trust-item h2 {
+.trust-item__title {
   margin-bottom: 0.4rem;
+  color: var(--color-graphite);
   font-size: 1rem;
 }
 
-.trust-item p {
+.trust-item p:not(.trust-item__title) {
   margin: 0;
   color: var(--color-muted);
   font-size: 0.8rem;
@@ -570,7 +574,7 @@
   padding: 2rem;
 }
 
-.testimonial-card__quote {
+.testimonial-card__quote-mark {
   position: absolute;
   top: 1rem;
   right: 1.5rem;
@@ -585,10 +589,14 @@
   letter-spacing: 0.18em;
 }
 
-.testimonial-card p {
+.testimonial-card__blockquote {
+  margin: 0 0 1.5rem;
+}
+
+.testimonial-card__blockquote p {
   position: relative;
   z-index: 1;
-  margin: 0 0 1.5rem;
+  margin: 0;
   font-size: 1.05rem;
   font-style: italic;
   color: var(--color-muted);
@@ -705,6 +713,7 @@
 }
 
 .contacts-card__grid {
+  margin: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
@@ -731,9 +740,19 @@
 }
 
 .contact-item a,
-.contact-item span:last-child {
+.contact-item__value,
+.contact-item__value time,
+.contact-item__address {
   color: var(--color-white);
   font-size: 1.05rem;
+}
+
+.contact-item dd {
+  margin: 0;
+}
+
+.contact-item__address {
+  font-style: normal;
 }
 
 .contacts-card__socials {

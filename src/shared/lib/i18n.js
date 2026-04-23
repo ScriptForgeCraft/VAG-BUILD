@@ -48,15 +48,3 @@ export function getStoredLanguage(root = document.documentElement) {
     return root.dataset.defaultLanguage || DEFAULT_LANGUAGE;
   }
 }
-
-export function persistLanguage(language) {
-  if (document.documentElement.dataset.pageLanguage) {
-    return;
-  }
-
-  try {
-    localStorage.setItem("vag-language", language);
-  } catch {
-    // Ignore storage access errors in private or restricted modes.
-  }
-}

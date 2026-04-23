@@ -1,11 +1,11 @@
 import { siteConfig } from "../../../../shared/config/site-config.js";
-import { escapeAttribute, escapeHtml } from "../../../../shared/lib/html.js";
-import { isActionableLink } from "../../../../shared/lib/link.js";
-import { PHONE_INPUT_PATTERN } from "../../../../shared/lib/validation.js";
+import { escapeHtml } from "../../../../shared/lib/html.js";
 import { createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
+import { PHONE_INPUT_PATTERN } from "../../../../shared/lib/validation.js";
 import { renderButton } from "../../../../shared/ui/button.js";
 import { renderInputField } from "../../../../shared/ui/form-controls.js";
 import { renderIcon } from "../../../../shared/ui/icons.js";
+import { renderSocialLinks } from "../../../../shared/ui/social-links.js";
 
 const quickRequestFields = {
   quickName: {
@@ -35,23 +35,13 @@ const quickRequestFields = {
 };
 
 export function renderContactsSection() {
-  const socialLinks = [
-    isActionableLink(siteConfig.socialLinks.instagram)
-      ? `<a href="${escapeAttribute(siteConfig.socialLinks.instagram)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">${renderIcon("instagram")}</a>`
-      : "",
-    isActionableLink(siteConfig.socialLinks.facebook)
-      ? `<a href="${escapeAttribute(siteConfig.socialLinks.facebook)}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">${renderIcon("facebook")}</a>`
-      : "",
-  ]
-    .filter(Boolean)
-    .join("");
-
   return `
-    <section class="section contacts" id="contacts">
+    <section class="section contacts" id="contacts" aria-labelledby="contacts-title">
       <div class="container">
         <div class="contacts-card">
           <div class="contacts-card__info">
             <h2
+              id="contacts-title"
               ${createI18nTextAttributes({
                 am: "Կապ մեզ հետ",
                 ru: "Контакты",
@@ -70,11 +60,11 @@ export function renderContactsSection() {
               Պատրաստ ենք պատասխանել ձեր բոլոր հարցերին
             </p>
 
-            <div class="contacts-card__grid">
-              <article class="contact-item">
+            <dl class="contacts-card__grid">
+              <div class="contact-item">
                 <div class="contact-item__icon">${renderIcon("phone")}</div>
                 <div>
-                  <span
+                  <dt
                     class="contact-item__label"
                     ${createI18nTextAttributes({
                       am: "Հեռախոս",
@@ -83,15 +73,17 @@ export function renderContactsSection() {
                     })}
                   >
                     Հեռախոս
-                  </span>
-                  <a href="tel:+${siteConfig.phone.raw}">${siteConfig.phone.display}</a>
+                  </dt>
+                  <dd class="contact-item__value">
+                    <a href="tel:+${siteConfig.phone.raw}">${siteConfig.phone.display}</a>
+                  </dd>
                 </div>
-              </article>
+              </div>
 
-              <article class="contact-item">
+              <div class="contact-item">
                 <div class="contact-item__icon">${renderIcon("mail")}</div>
                 <div>
-                  <span
+                  <dt
                     class="contact-item__label"
                     ${createI18nTextAttributes({
                       am: "Էլ. փոստ",
@@ -100,15 +92,17 @@ export function renderContactsSection() {
                     })}
                   >
                     Էլ. փոստ
-                  </span>
-                  <a href="mailto:${siteConfig.email}">${siteConfig.email}</a>
+                  </dt>
+                  <dd class="contact-item__value">
+                    <a href="mailto:${siteConfig.email}">${siteConfig.email}</a>
+                  </dd>
                 </div>
-              </article>
+              </div>
 
-              <article class="contact-item">
+              <div class="contact-item">
                 <div class="contact-item__icon">${renderIcon("map-pin")}</div>
                 <div>
-                  <span
+                  <dt
                     class="contact-item__label"
                     ${createI18nTextAttributes({
                       am: "Գրասենյակ",
@@ -117,15 +111,19 @@ export function renderContactsSection() {
                     })}
                   >
                     Գրասենյակ
-                  </span>
-                  <span ${createI18nTextAttributes(siteConfig.location)}>${escapeHtml(siteConfig.location.am)}</span>
+                  </dt>
+                  <dd class="contact-item__value">
+                    <address class="contact-item__address" ${createI18nTextAttributes(siteConfig.location)}>
+                      ${escapeHtml(siteConfig.location.am)}
+                    </address>
+                  </dd>
                 </div>
-              </article>
+              </div>
 
-              <article class="contact-item">
+              <div class="contact-item">
                 <div class="contact-item__icon">${renderIcon("clock")}</div>
                 <div>
-                  <span
+                  <dt
                     class="contact-item__label"
                     ${createI18nTextAttributes({
                       am: "Աշխատանքային ժամեր",
@@ -134,17 +132,21 @@ export function renderContactsSection() {
                     })}
                   >
                     Աշխատանքային ժամեր
-                  </span>
-                  <span ${createI18nTextAttributes(siteConfig.workHours)}>${escapeHtml(siteConfig.workHours.am)}</span>
+                  </dt>
+                  <dd class="contact-item__value">
+                    <time datetime="Mo-Su 09:00-20:00" ${createI18nTextAttributes(siteConfig.workHours)}>
+                      ${escapeHtml(siteConfig.workHours.am)}
+                    </time>
+                  </dd>
                 </div>
-              </article>
-            </div>
+              </div>
+            </dl>
 
-            ${socialLinks ? `<div class="contacts-card__socials">${socialLinks}</div>` : ""}
+            ${renderSocialLinks({ className: "contacts-card__socials" })}
           </div>
 
           <div class="contacts-card__form-wrap">
-            <form class="quick-form" id="quick-form">
+            <form class="quick-form" id="quick-form" action="#contacts">
               <h3
                 ${createI18nTextAttributes({
                   am: "Արագ հաղորդագրություն",
@@ -177,7 +179,7 @@ export function renderContactsSection() {
                 pattern: PHONE_INPUT_PATTERN,
               })}
               ${renderButton({
-                type: "button",
+                type: "submit",
                 label: {
                   am: "Ուղարկել հաղորդագրություն",
                   ru: "Отправить сообщение",
@@ -185,9 +187,18 @@ export function renderContactsSection() {
                 },
                 variant: "primary",
                 icon: "send",
-                classes: "quick-form__button",
-                attributes: "data-quick-send",
+                classes: "quick-form__button js-only",
               })}
+              <p
+                class="calculator-hint no-js-only"
+                ${createI18nTextAttributes({
+                  am: "Արագ հարցման համար օգտագործեք հեռախոսը կամ WhatsApp-ը. այս ձևը պահանջում է JavaScript։",
+                  ru: "Для быстрой заявки используйте телефон или WhatsApp: эта форма работает через JavaScript.",
+                  en: "For a quick request, use the phone or WhatsApp links: this form requires JavaScript.",
+                })}
+              >
+                Արագ հարցման համար օգտագործեք հեռախոսը կամ WhatsApp-ը. այս ձևը պահանջում է JavaScript։
+              </p>
             </form>
           </div>
         </div>

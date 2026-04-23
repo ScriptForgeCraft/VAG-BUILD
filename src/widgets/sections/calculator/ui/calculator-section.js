@@ -2,7 +2,7 @@ import { renderCalculatorForm } from "../../../../features/calculator/ui/calcula
 
 export function renderCalculatorSection() {
   return `
-    <section class="section calculator-section" id="calculator">
+    <section class="section calculator-section" id="calculator" aria-labelledby="calculator-title">
       <div class="container">
         ${renderCalculatorForm()}
       </div>

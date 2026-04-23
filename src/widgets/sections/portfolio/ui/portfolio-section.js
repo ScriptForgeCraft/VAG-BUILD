@@ -5,11 +5,12 @@ import { renderButton } from "../../../../shared/ui/button.js";
 
 export function renderPortfolioSection() {
   return `
-    <section class="section portfolio" id="portfolio">
+    <section class="section portfolio" id="portfolio" aria-labelledby="portfolio-title">
       <div class="container">
         <div class="portfolio__header reveal">
           <div>
             <h2
+              id="portfolio-title"
               ${createI18nTextAttributes({
                 am: "Մեր աշխատանքները",
                 ru: "Наши проекты",
@@ -38,8 +39,11 @@ export function renderPortfolioSection() {
                   <div class="project-card__media">
                     <img
                       src="${project.image}"
+                      width="${project.imageWidth}"
+                      height="${project.imageHeight}"
                       ${createI18nAltAttributes(project.title)}
                       alt="${escapeHtml(project.title.am)}"
+                      decoding="async"
                       loading="lazy"
                       referrerpolicy="no-referrer"
                     />

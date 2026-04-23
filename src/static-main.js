@@ -1,5 +1,3 @@
-import "./shared/styles/index.css";
-
 import { initCalculatorController } from "./features/calculator/model/calculator-controller.js";
 import { initMobileMenuController } from "./features/navigation/model/mobile-menu-controller.js";
 import { initQuickRequestController } from "./features/quick-request/model/quick-request-controller.js";
@@ -14,9 +12,7 @@ function syncCurrentYear() {
 document.documentElement.classList.remove("no-js");
 syncCurrentYear();
 
-[
-  initMobileMenuController(),
-  initCalculatorController(),
-  initQuickRequestController(),
-  initRevealController(),
-];
+initMobileMenuController();
+initCalculatorController();
+initQuickRequestController();
+initRevealController();

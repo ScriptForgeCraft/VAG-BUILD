@@ -18,9 +18,10 @@ const orderLabel = {
 
 export function renderServicesSection() {
   return `
-    <section class="section services" id="services">
+    <section class="section services" id="services" aria-labelledby="services-title">
       <div class="container">
         ${renderSectionHeading({
+          id: "services-title",
           title: {
             am: "Մեր ծառայությունները",
             ru: "Наши услуги",
