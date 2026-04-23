@@ -16,14 +16,6 @@ export const navigationLinks = [
     },
   },
   {
-    href: "#portfolio",
-    label: {
-      am: "Մեր աշխատանքները",
-      ru: "Наши проекты",
-      en: "Our Projects",
-    },
-  },
-  {
     href: "#faq",
     label: {
       am: "FAQ",

@@ -83,7 +83,7 @@ export function renderSiteFooter() {
 
         <div class="site-footer__bottom">
           <p>
-            © <span data-current-year>2026</span> VAG.
+            © <span data-current-year>2026</span> Script Forge.
             <span
               ${createI18nTextAttributes({
                 am: "Բոլոր իրավունքները պաշտպանված են",
