@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://vag.am/am/</loc>
+    <loc>https://vag.am/</loc>
     <lastmod>2026-04-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://vag.am/ru/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://vag.am/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/" />
   </url>
   <url>
     <loc>https://vag.am/ru/</loc>
     <lastmod>2026-04-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://vag.am/ru/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://vag.am/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/" />
   </url>
   <url>
     <loc>https://vag.am/en/</loc>
     <lastmod>2026-04-23</lastmod>
-    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="hy" href="https://vag.am/" />
     <xhtml:link rel="alternate" hreflang="ru" href="https://vag.am/ru/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://vag.am/en/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/am/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vag.am/" />
   </url>
 </urlset>

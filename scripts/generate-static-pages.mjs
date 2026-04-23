@@ -17,14 +17,13 @@ import { renderSkipLink } from "../src/shared/ui/skip-link.js";
 
 const OUTPUTS = [
   { language: "am", file: resolve("index.html"), path: "/" },
-  { language: "am", file: resolve("am/index.html"), path: "/am/" },
   { language: "ru", file: resolve("ru/index.html"), path: "/ru/" },
   { language: "en", file: resolve("en/index.html"), path: "/en/" },
 ];
 
 const siteUrl = "https://vag.am";
 const languagePathMap = {
-  am: "/am/",
+  am: "/",
   ru: "/ru/",
   en: "/en/",
 };
@@ -189,8 +188,8 @@ function renderHead({ language, pagePath }) {
   const title = getTranslation(siteMeta.title, language);
   const description = getTranslation(siteMeta.description, language);
   const sourcePageUrl = `${siteUrl}${pagePath === "/" ? "/" : pagePath}`;
-  const canonical = pagePath === "/" ? defaultLanguageUrl : sourcePageUrl;
-  const robots = pagePath === "/" ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
+  const canonical = sourcePageUrl;
+  const robots = "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1";
   const ogLocale = localeMap[language] || localeMap.am;
   const alternateLocaleTags = Object.entries(localeMap)
     .filter(([code]) => code !== language)
@@ -262,11 +261,10 @@ function renderDocument({ language, pagePath }) {
 
 function renderSitemapXml() {
   const lastmod = new Date().toISOString().slice(0, 10);
-  const indexedOutputs = OUTPUTS.filter((output) => output.path !== "/");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${indexedOutputs
+${OUTPUTS
   .map((output) => {
     const pageUrl = `${siteUrl}${output.path}`;
 

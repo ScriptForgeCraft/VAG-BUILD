@@ -16,7 +16,7 @@ const languageSwitcherLabels = {
 };
 
 const languageHrefMap = {
-  am: "/am/",
+  am: "/",
   ru: "/ru/",
   en: "/en/",
 };
