@@ -1,9 +1,9 @@
 export const testimonials = [
   {
     quote: {
-      am: "Շատ գոհ եմ աշխատանքից: Ամեն ինչ արվեց ժամանակին և բարձր որակով:",
-      ru: "Очень доволен работой. Все сделано в срок и качественно.",
-      en: "Very satisfied with the work. Everything done on time and with quality.",
+      am: "Շատ գոհ ենք աշխատանքից․ թիմը պահեց ժամկետները և ամբողջ ընթացքում բաց էր հաղորդակցության համար։",
+      ru: "Очень довольны результатом: команда выдержала сроки и постоянно была на связи.",
+      en: "We are very happy with the result: the team stayed on schedule and communicated clearly throughout the project.",
     },
     author: {
       am: "Արմեն Գրիգորյան",
@@ -11,17 +11,17 @@ export const testimonials = [
       en: "Armen Grigoryan",
     },
     meta: {
-      am: "Երևան, Կենտրոն • Բնակարան",
-      ru: "Ереван, Центр • Квартира",
-      en: "Yerevan, Center • Apartment",
+      am: "Երևան • Բնակարան",
+      ru: "Ереван • Квартира",
+      en: "Yerevan • Apartment",
     },
     avatar: "Ա",
   },
   {
     quote: {
-      am: "Վարպետները շատ պրոֆեսիոնալ էին: Օգնեցին նաև նյութերի ընտրության հարցում:",
-      ru: "Мастера профессионалы своего дела. Помогли с выбором материалов.",
-      en: "Masters are professionals. Helped with material selection.",
+      am: "Օգնեցին ոչ միայն վերանորոգման ընթացքում, այլ նաև նյութերի ճիշտ ընտրության հարցում, ինչի շնորհիվ խնայեցինք ժամանակ։",
+      ru: "Помогли не только с ремонтом, но и с подбором материалов, благодаря чему мы сэкономили время.",
+      en: "They helped not only with the renovation itself but also with material selection, which saved us a lot of time.",
     },
     author: {
       am: "Աննա Սարգսյան",

@@ -1,42 +1,18 @@
 import { navigationLinks } from "../../../entities/navigation/model/navigation-links.js";
 import { siteConfig } from "../../../shared/config/site-config.js";
-import { escapeHtml } from "../../../shared/lib/html.js";
+import { escapeAttribute, escapeHtml } from "../../../shared/lib/html.js";
+import { isActionableLink } from "../../../shared/lib/link.js";
 import { createI18nTextAttributes } from "../../../shared/lib/i18n.js";
 import { renderIcon } from "../../../shared/ui/icons.js";
 
-const legalLinks = [
-  {
-    href: "#",
-    label: {
-      am: "Գաղտնիության քաղաքականություն",
-      ru: "Политика конфиденциальности",
-      en: "Privacy Policy",
-    },
-  },
-  {
-    href: "#",
-    label: {
-      am: "Ծառայությունների պայմաններ",
-      ru: "Условия обслуживания",
-      en: "Terms of Service",
-    },
-  },
-  {
-    href: "#",
-    label: {
-      am: "Cookie քաղաքականություն",
-      ru: "Политика Cookie",
-      en: "Cookie Policy",
-    },
-  },
-];
+const legalLinks = [];
 
 function renderLinks(links) {
   return links
     .map(
       (link) => `
         <li>
-          <a href="${link.href}" ${createI18nTextAttributes(link.label)}>${escapeHtml(link.label.am)}</a>
+          <a href="${escapeAttribute(link.href)}" ${createI18nTextAttributes(link.label)}>${escapeHtml(link.label.am)}</a>
         </li>
       `
     )
@@ -44,6 +20,18 @@ function renderLinks(links) {
 }
 
 export function renderSiteFooter() {
+  const actionableLegalLinks = legalLinks.filter((link) => isActionableLink(link.href));
+  const socialLinks = [
+    isActionableLink(siteConfig.socialLinks.instagram)
+      ? `<a href="${escapeAttribute(siteConfig.socialLinks.instagram)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">${renderIcon("instagram")}</a>`
+      : "",
+    isActionableLink(siteConfig.socialLinks.facebook)
+      ? `<a href="${escapeAttribute(siteConfig.socialLinks.facebook)}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">${renderIcon("facebook")}</a>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
+
   return `
     <footer class="site-footer">
       <div class="container">
@@ -78,25 +66,31 @@ export function renderSiteFooter() {
             </ul>
           </div>
 
-          <div>
-            <h3
-              ${createI18nTextAttributes({
-                am: "Իրավական",
-                ru: "Правовая информация",
-                en: "Legal",
-              })}
-            >
-              Իրավական
-            </h3>
-            <ul class="site-footer__links">
-              ${renderLinks(legalLinks)}
-            </ul>
-          </div>
+          ${
+            actionableLegalLinks.length
+              ? `
+                <div>
+                  <h3
+                    ${createI18nTextAttributes({
+                      am: "Իրավական",
+                      ru: "Правовая информация",
+                      en: "Legal",
+                    })}
+                  >
+                    Իրավական
+                  </h3>
+                  <ul class="site-footer__links">
+                    ${renderLinks(actionableLegalLinks)}
+                  </ul>
+                </div>
+              `
+              : ""
+          }
         </div>
 
         <div class="site-footer__bottom">
           <p>
-            © <span data-current-year>2026</span> Script Forge.
+            © <span data-current-year>2026</span> ${siteConfig.brandName}.
             <span
               ${createI18nTextAttributes({
                 am: "Բոլոր իրավունքները պաշտպանված են",
@@ -107,10 +101,7 @@ export function renderSiteFooter() {
               Բոլոր իրավունքները պաշտպանված են
             </span>
           </p>
-          <div class="site-footer__socials">
-            <a href="${siteConfig.socialLinks.instagram}" aria-label="Instagram">${renderIcon("instagram")}</a>
-            <a href="${siteConfig.socialLinks.facebook}" aria-label="Facebook">${renderIcon("facebook")}</a>
-          </div>
+          ${socialLinks ? `<div class="site-footer__socials">${socialLinks}</div>` : ""}
         </div>
       </div>
     </footer>

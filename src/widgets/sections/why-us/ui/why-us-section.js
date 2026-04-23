@@ -1,5 +1,6 @@
 import { whyUsItems } from "../../../../entities/advantage/model/why-us-items.js";
 import { escapeHtml } from "../../../../shared/lib/html.js";
+import { createTeamPlaceholderImage } from "../../../../shared/lib/placeholder-media.js";
 import { createI18nAltAttributes, createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 import { renderIcon } from "../../../../shared/ui/icons.js";
 
@@ -38,7 +39,7 @@ export function renderWhyUsSection() {
         <div class="why-us__visual reveal">
           <div class="why-us__image">
             <img
-              src="https://picsum.photos/seed/team/1000/1000"
+              src="${createTeamPlaceholderImage()}"
               ${createI18nAltAttributes({
                 am: "VAG-ի վարպետների թիմը",
                 ru: "Команда мастеров VAG",

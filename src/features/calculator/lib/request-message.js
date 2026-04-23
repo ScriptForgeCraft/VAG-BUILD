@@ -54,16 +54,7 @@ function getUnit(fieldName, language) {
 }
 
 export function buildCalculatorRequestLines({ language, form, estimates }) {
-  const lines = [
-    getTranslation(calculatorText.sendButton, language),
-    getFieldValueLine("locationCity", getOptionLabel("locationCity", form.locationCity, language), language),
-  ];
-
-  if (form.locationCity === "yerevan") {
-    lines.push(
-      getFieldValueLine("locationDistrict", getOptionLabel("locationDistrict", form.locationDistrict, language), language)
-    );
-  }
+  const lines = [getTranslation(calculatorText.sendButton, language)];
 
   lines.push(
     getFieldValueLine("propertyType", getOptionLabel("propertyType", form.propertyType, language), language),
@@ -144,7 +135,6 @@ export function buildCalculatorRequestLines({ language, form, estimates }) {
   }
 
   lines.push(
-    getFieldValueLine("accessLevel", getOptionLabel("accessLevel", form.accessLevel, language), language),
     getFieldValueLine("urgency", getOptionLabel("urgency", form.urgency, language), language)
   );
 

@@ -1,9 +1,5 @@
-import { DEFAULT_LANGUAGE, HTML_LANG_BY_LANGUAGE, LANGUAGES } from "../constants/languages.js";
+import { DEFAULT_LANGUAGE, LANGUAGES } from "../constants/languages.js";
 import { escapeAttribute } from "./html.js";
-
-export function capitalize(value) {
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
 
 export function getTranslation(translations, language = DEFAULT_LANGUAGE) {
   if (!translations) {
@@ -31,11 +27,21 @@ export function createI18nAltAttributes(translations) {
   return buildLocalizedAttributes("data-alt", translations);
 }
 
+export function createI18nAriaLabelAttributes(translations) {
+  return buildLocalizedAttributes("data-aria-label", translations);
+}
+
 export function createI18nOptionAttributes(translations) {
   return buildLocalizedAttributes("data-text", translations);
 }
 
 export function getStoredLanguage(root = document.documentElement) {
+  const pageLanguage = root.dataset.pageLanguage || root.dataset.defaultLanguage;
+
+  if (pageLanguage) {
+    return pageLanguage;
+  }
+
   try {
     return localStorage.getItem("vag-language") || root.dataset.defaultLanguage || DEFAULT_LANGUAGE;
   } catch {
@@ -44,47 +50,13 @@ export function getStoredLanguage(root = document.documentElement) {
 }
 
 export function persistLanguage(language) {
+  if (document.documentElement.dataset.pageLanguage) {
+    return;
+  }
+
   try {
     localStorage.setItem("vag-language", language);
   } catch {
     // Ignore storage access errors in private or restricted modes.
   }
-}
-
-export function applyLanguage(language, { root = document.documentElement } = {}) {
-  root.lang = HTML_LANG_BY_LANGUAGE[language] ?? language;
-
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    const translated = element.dataset[language];
-    if (translated) {
-      element.textContent = translated;
-    }
-  });
-
-  document.querySelectorAll("[data-placeholder-am]").forEach((element) => {
-    const translated = element.dataset[`placeholder${capitalize(language)}`];
-    if (translated) {
-      element.setAttribute("placeholder", translated);
-    }
-  });
-
-  document.querySelectorAll("[data-text-am]").forEach((element) => {
-    const translated = element.dataset[`text${capitalize(language)}`];
-    if (translated) {
-      element.textContent = translated;
-    }
-  });
-
-  document.querySelectorAll("[data-alt-am]").forEach((element) => {
-    const translated = element.dataset[`alt${capitalize(language)}`];
-    if (translated) {
-      element.setAttribute("alt", translated);
-    }
-  });
-
-  document.querySelectorAll("[data-language-switch]").forEach((button) => {
-    const active = button.dataset.languageSwitch === language;
-    button.classList.toggle("is-active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
 }

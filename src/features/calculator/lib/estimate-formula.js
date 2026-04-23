@@ -1,12 +1,15 @@
 import {
+  calculatorScenarioMeta,
+  calculatorWorkModuleFieldMap,
+} from "../model/constants.js";
+import {
   calculatorFullRenovationRateCatalog,
   calculatorPricingConfig,
   calculatorProjectAdjustmentLabels,
+  calculatorReferenceRateCatalog,
   calculatorRateCatalog,
-  calculatorScenarioMeta,
   calculatorSelectedWorkFieldCatalog,
-  calculatorWorkModuleFieldMap,
-} from "../model/constants.js";
+} from "../model/pricing.js";
 
 const SCENARIO_SUFFIX_MAP = {
   minimal: "Min",
@@ -50,14 +53,6 @@ function toCurrency(value) {
   return Math.round(Number(value) || 0);
 }
 
-function getDistrictCoefficient(form) {
-  if (form.locationCity !== "yerevan") {
-    return 1;
-  }
-
-  return calculatorPricingConfig.districtCoefficients[form.locationDistrict] || 1;
-}
-
 function getCityCoefficient(form) {
   return calculatorPricingConfig.cityCoefficients[form.locationCity] || 1;
 }
@@ -82,8 +77,12 @@ function getPackageCoefficient(pricingPackage, scenarioId) {
   return getScenarioValue(calculatorPricingConfig.packageCoefficients[pricingPackage], scenarioId);
 }
 
+function getCalculatorRate(rateKey) {
+  return calculatorRateCatalog[rateKey] || calculatorReferenceRateCatalog[rateKey];
+}
+
 function createEmptyLineItem({ rateKey, fieldName, quantity }) {
-  const rate = calculatorRateCatalog[rateKey];
+  const rate = getCalculatorRate(rateKey);
 
   return {
     key: rateKey,
@@ -112,7 +111,7 @@ export function calculateRateLineItem({
   estimateMode = "selected-works",
   rateMultiplier = 1,
 } = {}) {
-  const rate = calculatorRateCatalog[rateKey];
+  const rate = getCalculatorRate(rateKey);
   const safeQuantity = Math.max(0, Number(quantity) || 0);
 
   if (!rate || safeQuantity <= 0) {
@@ -327,12 +326,6 @@ function calculateFullRenovationScenarioBreakdown(form, scenarioId) {
   );
   totalBeforeRounding = applyMultiplierAdjustment(
     projectAdjustmentDetails,
-    "districtCoefficient",
-    totalBeforeRounding,
-    getDistrictCoefficient(form)
-  );
-  totalBeforeRounding = applyMultiplierAdjustment(
-    projectAdjustmentDetails,
     "propertyCoefficient",
     totalBeforeRounding,
     getScenarioValue(calculatorPricingConfig.propertyCoefficients[form.propertyType], scenarioId)
@@ -358,13 +351,6 @@ function calculateFullRenovationScenarioBreakdown(form, scenarioId) {
       getScenarioValue(calculatorPricingConfig.wetZoneCoefficients[form.wetZonesCount], scenarioId)
     );
   }
-
-  totalBeforeRounding = applyMultiplierAdjustment(
-    projectAdjustmentDetails,
-    "accessCoefficient",
-    totalBeforeRounding,
-    getScenarioValue(calculatorPricingConfig.accessCoefficients[form.accessLevel], scenarioId)
-  );
   totalBeforeRounding = applyMultiplierAdjustment(
     projectAdjustmentDetails,
     "urgencyCoefficient",
@@ -438,7 +424,7 @@ export function calculateEstimate(form) {
 }
 
 export function getScenarioRateBound(rateKey, scenarioId, fieldBase = "total") {
-  const rate = calculatorRateCatalog[rateKey];
+  const rate = getCalculatorRate(rateKey);
 
   if (!rate) {
     return 0;

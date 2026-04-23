@@ -4,9 +4,12 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/generate-static-pages.mjs",
+    "prebuild": "node scripts/generate-static-pages.mjs",
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0"
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/calculator-estimate-formula.test.js"
   },
   "devDependencies": {
     "vite": "^6.2.0"

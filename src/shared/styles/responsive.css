@@ -78,8 +78,6 @@
   .hero__actions,
   .portfolio__header,
   .calculator-actions,
-  .estimate-breakdown__item-top,
-  .estimate-breakdown__detail,
   .site-footer__bottom {
     flex-direction: column;
     align-items: stretch;

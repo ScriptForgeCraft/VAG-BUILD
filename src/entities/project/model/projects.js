@@ -1,6 +1,13 @@
+import { createProjectPlaceholderImage } from "../../../shared/lib/placeholder-media.js";
+
 export const projects = [
   {
-    image: "https://picsum.photos/seed/project0/800/600",
+    image: createProjectPlaceholderImage({
+      accent: "#f27d26",
+      primary: "#1f2933",
+      secondary: "#eef3f8",
+      label: "CITY",
+    }),
     type: {
       am: "Բնակարան",
       ru: "Квартира",
@@ -17,13 +24,18 @@ export const projects = [
       en: "3 months",
     },
     description: {
-      am: "Ամբողջական վերանորոգում մինիմալիստական ոճով:",
-      ru: "Полный ремонт в стиле минимализм.",
-      en: "Full renovation in minimalist style.",
+      am: "Մինիմալիստական ինտերիերի ամբողջական վերանորոգում բնակարանային նախագծի համար։",
+      ru: "Полный ремонт квартиры в современном минималистичном стиле.",
+      en: "Full apartment renovation with a modern minimalist interior direction.",
     },
   },
   {
-    image: "https://picsum.photos/seed/project1/800/600",
+    image: createProjectPlaceholderImage({
+      accent: "#6c8a5f",
+      primary: "#243127",
+      secondary: "#edf4ef",
+      label: "HOME",
+    }),
     type: {
       am: "Տուն",
       ru: "Дом",
@@ -40,22 +52,27 @@ export const projects = [
       en: "5 months",
     },
     description: {
-      am: "Էկո-ոճի վերանորոգում բնական նյութերով:",
-      ru: "Ремонт в эко-стиле с натуральными материалами.",
-      en: "Eco-style renovation with natural materials.",
+      am: "Բնական նյութերով և ջերմ մթնոլորտով առանձնատան վերանորոգում։",
+      ru: "Ремонт частного дома с теплой атмосферой и натуральными материалами.",
+      en: "Private house renovation built around natural materials and a warm atmosphere.",
     },
   },
   {
-    image: "https://picsum.photos/seed/project2/800/600",
+    image: createProjectPlaceholderImage({
+      accent: "#d6a328",
+      primary: "#24333c",
+      secondary: "#f7f4e8",
+      label: "OFFICE",
+    }),
     type: {
       am: "Կոմերցիոն",
       ru: "Коммерция",
       en: "Commercial",
     },
     title: {
-      am: "Գրասենյակ Կենտրոնում",
-      ru: "Офис в Центре",
-      en: "Office in Center",
+      am: "Գրասենյակային վերանորոգում",
+      ru: "Ремонт офисного пространства",
+      en: "Office Renovation",
     },
     duration: {
       am: "2 ամիս",
@@ -63,9 +80,9 @@ export const projects = [
       en: "2 months",
     },
     description: {
-      am: "Լոֆթ ոճի գրասենյակային տարածք:",
-      ru: "Офисное пространство в стиле лофт.",
-      en: "Loft-style office space.",
+      am: "Կոմերցիոն ինտերիերի ֆունկցիոնալ և ներկայացուցչական արդիականացում։",
+      ru: "Функциональное и презентабельное обновление коммерческого интерьера.",
+      en: "Functional and presentation-focused upgrade of a commercial interior.",
     },
   },
 ];

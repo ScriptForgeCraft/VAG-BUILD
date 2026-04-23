@@ -16,7 +16,7 @@ export const siteConfig = {
     en: "Daily: 09:00 - 20:00",
   },
   socialLinks: {
-    instagram: "#",
-    facebook: "#",
+    instagram: "",
+    facebook: "",
   },
 };

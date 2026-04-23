@@ -24,11 +24,29 @@ export function renderInputField({
   placeholder,
   classes = "field-input",
   autocomplete = "",
+  inputMode = "",
   extraAttributes = "",
   value = "",
+  required = false,
+  pattern = "",
+  title = "",
+  minLength,
+  maxLength,
+  min,
+  max,
+  step,
 }) {
   const autocompleteAttribute = autocomplete ? `autocomplete="${escapeAttribute(autocomplete)}"` : "";
+  const inputModeAttribute = inputMode ? `inputmode="${escapeAttribute(inputMode)}"` : "";
   const valueAttribute = value === "" ? "" : `value="${escapeAttribute(value)}"`;
+  const requiredAttribute = required ? "required" : "";
+  const patternAttribute = pattern ? `pattern="${escapeAttribute(pattern)}"` : "";
+  const titleAttribute = title ? `title="${escapeAttribute(title)}"` : "";
+  const minLengthAttribute = Number.isInteger(minLength) ? `minlength="${escapeAttribute(minLength)}"` : "";
+  const maxLengthAttribute = Number.isInteger(maxLength) ? `maxlength="${escapeAttribute(maxLength)}"` : "";
+  const minAttribute = typeof min === "number" ? `min="${escapeAttribute(min)}"` : "";
+  const maxAttribute = typeof max === "number" ? `max="${escapeAttribute(max)}"` : "";
+  const stepAttribute = typeof step === "number" ? `step="${escapeAttribute(step)}"` : "";
 
   return `
     <div class="field-group">
@@ -39,6 +57,15 @@ export function renderInputField({
         name="${escapeAttribute(name)}"
         type="${escapeAttribute(type)}"
         ${autocompleteAttribute}
+        ${inputModeAttribute}
+        ${requiredAttribute}
+        ${patternAttribute}
+        ${titleAttribute}
+        ${minLengthAttribute}
+        ${maxLengthAttribute}
+        ${minAttribute}
+        ${maxAttribute}
+        ${stepAttribute}
         ${createI18nPlaceholderAttributes(placeholder)}
         placeholder="${escapeAttribute(placeholder.am)}"
         ${valueAttribute}
@@ -74,6 +101,7 @@ export function renderTextareaField({
 
 function renderChoiceButton({ field, option, classes, selectedValue }) {
   const selectedClass = option.value === selectedValue ? " is-selected" : "";
+  const isSelected = option.value === selectedValue;
   return `
     <button
       class="${escapeAttribute(`${classes}${selectedClass}`)}"
@@ -81,6 +109,7 @@ function renderChoiceButton({ field, option, classes, selectedValue }) {
       data-choice
       data-field="${escapeAttribute(field)}"
       data-value="${escapeAttribute(option.value)}"
+      aria-pressed="${isSelected}"
     >
       <span ${createI18nTextAttributes(option.label)}>${escapeHtml(option.label.am)}</span>
     </button>

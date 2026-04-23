@@ -1,6 +1,7 @@
 import { appStore } from "../../../app/model/app-store.js";
 import { siteConfig } from "../../../shared/config/site-config.js";
 import { openWhatsAppMessage } from "../../../shared/lib/whatsapp.js";
+import { applyPhoneValidation } from "../../../shared/lib/validation.js";
 import { buildQuickRequestLines } from "../lib/quick-request-message.js";
 import { quickRequestStore, updateQuickRequestField } from "./quick-request-store.js";
 
@@ -19,10 +20,23 @@ export function initQuickRequestController() {
     }
 
     updateQuickRequestField(field.name, field.value.trim());
+
+    if (field.name === "quickPhone") {
+      applyPhoneValidation(field, appStore.getState().language);
+    }
   };
 
   const handleSend = () => {
     const { language } = appStore.getState();
+    const phoneField = quickForm.querySelector('input[name="quickPhone"]');
+
+    if (phoneField instanceof HTMLInputElement) {
+      applyPhoneValidation(phoneField, language);
+    }
+
+    if (!quickForm.reportValidity()) {
+      return;
+    }
 
     openWhatsAppMessage({
       phone: siteConfig.phone.raw,

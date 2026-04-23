@@ -18,7 +18,6 @@ const NUMERIC_FIELDS = new Set([
 /**
  * @typedef {Object} CalculatorForm
  * @property {string} locationCity
- * @property {string} locationDistrict
  * @property {string} propertyType
  * @property {number} area
  * @property {string} conditionStage
@@ -41,7 +40,6 @@ const NUMERIC_FIELDS = new Set([
  * @property {number} plinthLength
  * @property {number} floorNumber
  * @property {string} elevator
- * @property {string} accessLevel
  * @property {string} urgency
  * @property {string} name
  * @property {string} phone

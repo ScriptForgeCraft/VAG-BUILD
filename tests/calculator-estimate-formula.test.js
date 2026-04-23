@@ -26,9 +26,7 @@ test("electric only uses new point range without project uplifts", () => {
     workModules: ["electrical"],
     electricalPoints: 10,
     locationCity: "gyumri",
-    locationDistrict: "other",
     propertyType: "house",
-    accessLevel: "difficult",
     urgency: "very-urgent",
     floorNumber: 12,
     elevator: "no",
@@ -123,7 +121,6 @@ test("mixed selected works sums only the chosen positions", () => {
     paintArea: 999,
     locationCity: "other",
     propertyType: "commercial",
-    accessLevel: "difficult",
     urgency: "very-urgent",
     floorNumber: 18,
     elevator: "no",
@@ -141,16 +138,14 @@ test("rounding helper rounds to the nearest 500 AMD", () => {
   assert.equal(roundToNearestStep(54550), 54500);
 });
 
-test("selected works ignore floor, logistics, city, urgency, and property uplifts", () => {
+test("selected works ignore floor, city, urgency, and other project uplifts", () => {
   const baseForm = createForm({
     estimateMode: "selected-works",
     pricingPackage: "labor-plus-rough",
     workModules: ["electrical"],
     electricalPoints: 8,
     locationCity: "yerevan",
-    locationDistrict: "kentron",
     propertyType: "apartment",
-    accessLevel: "easy",
     urgency: "standard",
     floorNumber: 1,
     elevator: "yes",
@@ -159,7 +154,6 @@ test("selected works ignore floor, logistics, city, urgency, and property uplift
     ...baseForm,
     locationCity: "gyumri",
     propertyType: "house",
-    accessLevel: "difficult",
     urgency: "very-urgent",
     floorNumber: 14,
     elevator: "no",
@@ -181,8 +175,6 @@ test("project uplifts remain available in full-renovation mode", () => {
     replanningNeeded: "no",
     demolitionScope: "none",
     locationCity: "yerevan",
-    locationDistrict: "kentron",
-    accessLevel: "easy",
     urgency: "standard",
     floorNumber: 1,
     elevator: "yes",
@@ -196,7 +188,6 @@ test("project uplifts remain available in full-renovation mode", () => {
     replanningNeeded: "yes",
     demolitionScope: "medium",
     locationCity: "gyumri",
-    accessLevel: "difficult",
     urgency: "very-urgent",
     floorNumber: 10,
     elevator: "no",

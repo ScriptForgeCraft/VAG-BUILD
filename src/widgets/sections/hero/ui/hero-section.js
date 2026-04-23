@@ -1,4 +1,5 @@
 import { escapeHtml } from "../../../../shared/lib/html.js";
+import { createHeroPlaceholderImage } from "../../../../shared/lib/placeholder-media.js";
 import { createI18nAltAttributes, createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 import { renderButton } from "../../../../shared/ui/button.js";
 import { renderIcon } from "../../../../shared/ui/icons.js";
@@ -110,7 +111,7 @@ export function renderHeroSection() {
         <div class="hero__visual reveal">
           <div class="hero__image-frame">
             <img
-              src="https://picsum.photos/seed/renovation/1200/1200"
+              src="${createHeroPlaceholderImage()}"
               ${createI18nAltAttributes({
                 am: "Պրեմիում վերանորոգման ինտերիեր Հայաստանում",
                 ru: "Премиальный интерьер после ремонта в Армении",

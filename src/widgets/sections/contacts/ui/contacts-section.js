@@ -1,5 +1,7 @@
 import { siteConfig } from "../../../../shared/config/site-config.js";
-import { escapeHtml } from "../../../../shared/lib/html.js";
+import { escapeAttribute, escapeHtml } from "../../../../shared/lib/html.js";
+import { isActionableLink } from "../../../../shared/lib/link.js";
+import { PHONE_INPUT_PATTERN } from "../../../../shared/lib/validation.js";
 import { createI18nTextAttributes } from "../../../../shared/lib/i18n.js";
 import { renderButton } from "../../../../shared/ui/button.js";
 import { renderInputField } from "../../../../shared/ui/form-controls.js";
@@ -33,6 +35,17 @@ const quickRequestFields = {
 };
 
 export function renderContactsSection() {
+  const socialLinks = [
+    isActionableLink(siteConfig.socialLinks.instagram)
+      ? `<a href="${escapeAttribute(siteConfig.socialLinks.instagram)}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">${renderIcon("instagram")}</a>`
+      : "",
+    isActionableLink(siteConfig.socialLinks.facebook)
+      ? `<a href="${escapeAttribute(siteConfig.socialLinks.facebook)}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">${renderIcon("facebook")}</a>`
+      : "",
+  ]
+    .filter(Boolean)
+    .join("");
+
   return `
     <section class="section contacts" id="contacts">
       <div class="container">
@@ -78,7 +91,16 @@ export function renderContactsSection() {
               <article class="contact-item">
                 <div class="contact-item__icon">${renderIcon("mail")}</div>
                 <div>
-                  <span class="contact-item__label">Email</span>
+                  <span
+                    class="contact-item__label"
+                    ${createI18nTextAttributes({
+                      am: "Էլ. փոստ",
+                      ru: "Email",
+                      en: "Email",
+                    })}
+                  >
+                    Էլ. փոստ
+                  </span>
                   <a href="mailto:${siteConfig.email}">${siteConfig.email}</a>
                 </div>
               </article>
@@ -118,14 +140,11 @@ export function renderContactsSection() {
               </article>
             </div>
 
-            <div class="contacts-card__socials">
-              <a href="${siteConfig.socialLinks.instagram}" aria-label="Instagram">${renderIcon("instagram")}</a>
-              <a href="${siteConfig.socialLinks.facebook}" aria-label="Facebook">${renderIcon("facebook")}</a>
-            </div>
+            ${socialLinks ? `<div class="contacts-card__socials">${socialLinks}</div>` : ""}
           </div>
 
           <div class="contacts-card__form-wrap">
-            <form class="quick-form" id="quick-form" novalidate>
+            <form class="quick-form" id="quick-form">
               <h3
                 ${createI18nTextAttributes({
                   am: "Արագ հաղորդագրություն",
@@ -141,6 +160,7 @@ export function renderContactsSection() {
                 fieldName: "quickName",
                 label: quickRequestFields.quickName.label,
                 placeholder: quickRequestFields.quickName.placeholder,
+                autocomplete: "name",
               })}
               ${renderInputField({
                 id: "quick-phone",
@@ -149,6 +169,12 @@ export function renderContactsSection() {
                 type: "tel",
                 label: quickRequestFields.quickPhone.label,
                 placeholder: quickRequestFields.quickPhone.placeholder,
+                autocomplete: "tel",
+                inputMode: "tel",
+                required: true,
+                minLength: 7,
+                maxLength: 20,
+                pattern: PHONE_INPUT_PATTERN,
               })}
               ${renderButton({
                 type: "button",
