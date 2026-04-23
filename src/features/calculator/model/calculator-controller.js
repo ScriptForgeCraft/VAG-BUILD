@@ -7,6 +7,9 @@ import { calculateEstimateScenarios } from "../lib/estimate-formula.js";
 import { buildCalculatorRequestLines } from "../lib/request-message.js";
 import { calculatorStore, setCalculatorStep, updateCalculatorField } from "./calculator-store.js";
 
+const STEP_SCROLL_TARGET_SELECTOR = ".calculator-fieldset, .field-group, .calculator-range, .estimate-box";
+const STEP_SCROLL_OFFSET = 24;
+
 function syncChoiceButtons(formState, root) {
   root.querySelectorAll("[data-choice]").forEach((button) => {
     const field = button.dataset.field;
@@ -56,6 +59,45 @@ function syncPanels(step, panels, indicators, backButton, nextButton, sendButton
   backButton?.classList.toggle("is-hidden", step === 1);
   nextButton?.classList.toggle("is-hidden", step === 4);
   sendButton?.classList.toggle("is-hidden", step !== 4);
+}
+
+function isVisibleStepElement(element) {
+  return !element.closest("[hidden], .is-hidden") && element.getClientRects().length > 0;
+}
+
+function getStepScrollTarget(step, panels) {
+  const activePanel = Array.from(panels).find((panel) => Number(panel.dataset.step) === step);
+
+  if (!activePanel) {
+    return null;
+  }
+
+  return (
+    Array.from(activePanel.querySelectorAll(STEP_SCROLL_TARGET_SELECTOR)).find((element) => isVisibleStepElement(element)) ||
+    activePanel
+  );
+}
+
+function scrollToStepStart(step, panels) {
+  const target = getStepScrollTarget(step, panels);
+
+  if (!(target instanceof HTMLElement)) {
+    return;
+  }
+
+  const siteHeader = document.querySelector(".site-header");
+  const headerHeight = siteHeader instanceof HTMLElement ? siteHeader.offsetHeight : 0;
+  const nextTop = Math.max(window.scrollY + target.getBoundingClientRect().top - headerHeight - STEP_SCROLL_OFFSET, 0);
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (Math.abs(window.scrollY - nextTop) < 4) {
+    return;
+  }
+
+  window.scrollTo({
+    top: nextTop,
+    behavior: prefersReducedMotion ? "auto" : "smooth",
+  });
 }
 
 function getVisibilityState(form) {
@@ -140,6 +182,7 @@ export function initCalculatorController() {
   const backButton = calculatorForm.querySelector("[data-calculator-back]");
   const nextButton = calculatorForm.querySelector("[data-calculator-next]");
   const sendButton = calculatorForm.querySelector("[data-calculator-send]");
+  let previousStep = calculatorStore.getState().step;
 
   const syncView = ({ step, form }) => {
     const estimates = calculateEstimateScenarios(form);
@@ -158,6 +201,14 @@ export function initCalculatorController() {
       const scenarioId = element.dataset.estimateValue;
       element.textContent = formatNumber(estimates[scenarioId] || 0);
     });
+
+    if (previousStep !== step) {
+      requestAnimationFrame(() => {
+        scrollToStepStart(step, panels);
+      });
+    }
+
+    previousStep = step;
   };
 
   const unsubscribe = calculatorStore.subscribe(syncView);

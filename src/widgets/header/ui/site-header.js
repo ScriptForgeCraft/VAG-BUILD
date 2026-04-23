@@ -10,8 +10,20 @@ import {
 import { renderIcon } from "../../../shared/ui/icons.js";
 import { renderLanguageSwitcher } from "../../../shared/ui/language-switcher.js";
 
+const headerNavigationLinks = [
+  ...navigationLinks.filter((link) => link.href !== "#faq"),
+  {
+    href: "#contacts",
+    label: {
+      am: "Կապ",
+      ru: "Контакты",
+      en: "Contacts",
+    },
+  },
+];
+
 function renderNavigation(className, extraAttributes = "") {
-  return navigationLinks
+  return headerNavigationLinks
     .map(
       (link) => `
         <a href="${escapeAttribute(link.href)}" class="${escapeAttribute(className)}" ${extraAttributes}>
